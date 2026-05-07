@@ -1,0 +1,9 @@
+name,metric,value
+scalar,final_test_loss,0.27094241976737976
+scalar,final_train_loss,0.2519810199737549
+scalar,params,272
+scalar,flops,512
+matrix,final_test_loss,0.26732727885246277
+matrix,final_train_loss,0.2570113241672516
+matrix,params,32
+matrix,flops,128

@@ -1,0 +1,5 @@
+name,metric,value
+scalar,final_test_accuracy,0.7310000061988831
+scalar,params,101
+matrix,final_test_accuracy,0.6720000505447388
+matrix,params,18826
