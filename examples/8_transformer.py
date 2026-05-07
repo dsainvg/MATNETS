@@ -1,9 +1,10 @@
 import flax.linen as nn
-from flax.training.train_state import TrainState
 import jax
 import jax.numpy as jnp
-import matnets as mtn
 import optax
+from flax.training.train_state import TrainState
+
+import matnets as mtn
 
 
 # Define an attention-based Transformer model analyzing input token dependencies

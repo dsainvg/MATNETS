@@ -1,10 +1,11 @@
 import flax.linen as nnx
-from flax.training.train_state import TrainState
 import jax
 import jax.numpy as jnp
+import optax
+from flax.training.train_state import TrainState
+
 import matnets as mtn
 from matnets import nn
-import optax
 
 
 # Define a foundational Recurrent Neural Network aggregating input sequence state
