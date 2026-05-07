@@ -1,0 +1,26 @@
+site_name: MATNETS
+site_description: Matrix-neuron neural network experiments for Python 3.11+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: deep orange
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: deep orange
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+extra_css:
+  - stylesheets/extra.css
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Concepts: concepts.md
+  - API Guide: api.md
+  - Examples: examples.md
+  - Development: development.md
