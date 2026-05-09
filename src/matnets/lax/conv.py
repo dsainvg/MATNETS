@@ -80,8 +80,7 @@ def matrix_conv1d(
         raise ValueError(msg)
 
     c = n
-    x_trans = jnp.transpose(x, (3, 0, 1, 2))
-    x_reshaped = jnp.reshape(x_trans, (c, x.shape[0], p * n))
+    x_reshaped = jnp.reshape(x, (x.shape[0], p * n, n))
 
     W_trans = jnp.transpose(W, (0, 3, 1, 4, 2))
     W_reshaped = jnp.reshape(W_trans, (q * n, p * n, kernel))
@@ -91,10 +90,9 @@ def matrix_conv1d(
         W_reshaped,
         window_strides=(stride,),
         padding=((pad_left, pad_right),),
-        dimension_numbers=("NWC", "OIW", "NWC"),
+        dimension_numbers=("WCN", "OIW", "WCN"),
     )
-    out_reshaped = jnp.reshape(out_conv, (c, out_conv.shape[1], q, n))
-    return jnp.transpose(out_reshaped, (1, 2, 3, 0)) + params.B
+    return jnp.reshape(out_conv, (out_conv.shape[0], q, n, n)) + params.B
 
 
 def matrix_conv2d(
@@ -139,8 +137,7 @@ def matrix_conv2d(
         raise ValueError(msg)
 
     c = n
-    x_trans = jnp.transpose(x, (4, 0, 1, 2, 3))
-    x_reshaped = jnp.reshape(x_trans, (c, x.shape[0], x.shape[1], p * n))
+    x_reshaped = jnp.reshape(x, (x.shape[0], x.shape[1], p * n, n))
 
     W_trans = jnp.transpose(W, (0, 4, 1, 5, 2, 3))
     W_reshaped = jnp.reshape(W_trans, (q * n, p * n, kernel_y, kernel_x))
@@ -150,11 +147,7 @@ def matrix_conv2d(
         W_reshaped,
         window_strides=(stride_y, stride_x),
         padding=((pad_top, pad_bottom), (pad_left, pad_right)),
-        dimension_numbers=("NHWC", "OIHW", "NHWC"),
+        dimension_numbers=("HWCN", "OIHW", "HWCN"),
     )
-    out_reshaped = jnp.reshape(
-        out_conv,
-        (c, out_conv.shape[1], out_conv.shape[2], q, n),
-    )
-    return jnp.transpose(out_reshaped, (1, 2, 3, 4, 0)) + params.B
+    return jnp.reshape(out_conv, (out_conv.shape[0], out_conv.shape[1], q, n, n)) + params.B
 

@@ -17,7 +17,12 @@ def identity(x: Array) -> Array:
 
 @jax.custom_jvp
 def _dense_linear(W: Array, B: Array, x: Array) -> Array:
-    return jnp.einsum("qpak,pkc->qac", W, x) + B
+    q, p, a, k = W.shape
+    c = x.shape[-1]
+    W_flat = jnp.reshape(jnp.transpose(W, (0, 2, 1, 3)), (q * a, p * k))
+    x_flat = jnp.reshape(x, (p * k, c))
+    out = jnp.matmul(W_flat, x_flat)
+    return jnp.reshape(out, (q, a, c)) + B
 
 
 @_dense_linear.defjvp
@@ -27,9 +32,20 @@ def _dense_linear_jvp(
 ) -> tuple[Array, Array]:
     W, B, x = primals
     dW, dB, dx = tangents
-    y = _dense_linear(W, B, x)
-    dy = jnp.einsum("qpak,pkc->qac", dW, x)
-    dy = dy + jnp.einsum("qpak,pkc->qac", W, dx) + dB
+    q, p, a, k = W.shape
+    c = x.shape[-1]
+
+    W_flat = jnp.reshape(jnp.transpose(W, (0, 2, 1, 3)), (q * a, p * k))
+    dW_flat = jnp.reshape(jnp.transpose(dW, (0, 2, 1, 3)), (q * a, p * k))
+    x_flat = jnp.reshape(x, (p * k, c))
+    dx_flat = jnp.reshape(dx, (p * k, c))
+
+    y_flat = jnp.matmul(W_flat, x_flat)
+    y = jnp.reshape(y_flat, (q, a, c)) + B
+
+    dy_flat = jnp.matmul(dW_flat, x_flat) + jnp.matmul(W_flat, dx_flat)
+    dy = jnp.reshape(dy_flat, (q, a, c)) + dB
+
     return y, dy
 
 
