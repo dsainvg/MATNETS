@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Literal
 
+import jax
 import jax.numpy as jnp
 from jax import Array
 
@@ -78,13 +79,22 @@ def matrix_conv1d(
         msg = "padding must be 'VALID' or 'SAME'"
         raise ValueError(msg)
 
-    x = jnp.pad(x, ((pad_left, pad_right), (0, 0), (0, 0), (0, 0)))
-    out_t = (x.shape[0] - kernel) // stride + 1
-    windows = jnp.stack(
-        [x[offset : offset + out_t * stride : stride] for offset in range(kernel)],
-        axis=1,
+    c = n
+    x_trans = jnp.transpose(x, (3, 0, 1, 2))
+    x_reshaped = jnp.reshape(x_trans, (c, x.shape[0], p * n))
+
+    W_trans = jnp.transpose(W, (0, 3, 1, 4, 2))
+    W_reshaped = jnp.reshape(W_trans, (q * n, p * n, kernel))
+
+    out_conv = jax.lax.conv_general_dilated(
+        x_reshaped,
+        W_reshaped,
+        window_strides=(stride,),
+        padding=((pad_left, pad_right),),
+        dimension_numbers=("NWC", "OIW", "NWC"),
     )
-    return jnp.einsum("qprak,trpkc->tqac", W, windows) + params.B
+    out_reshaped = jnp.reshape(out_conv, (c, out_conv.shape[1], q, n))
+    return jnp.transpose(out_reshaped, (1, 2, 3, 0)) + params.B
 
 
 def matrix_conv2d(
@@ -128,22 +138,23 @@ def matrix_conv2d(
         msg = "padding must be 'VALID' or 'SAME'"
         raise ValueError(msg)
 
-    x = jnp.pad(
-        x,
-        ((pad_top, pad_bottom), (pad_left, pad_right), (0, 0), (0, 0), (0, 0)),
+    c = n
+    x_trans = jnp.transpose(x, (4, 0, 1, 2, 3))
+    x_reshaped = jnp.reshape(x_trans, (c, x.shape[0], x.shape[1], p * n))
+
+    W_trans = jnp.transpose(W, (0, 4, 1, 5, 2, 3))
+    W_reshaped = jnp.reshape(W_trans, (q * n, p * n, kernel_y, kernel_x))
+
+    out_conv = jax.lax.conv_general_dilated(
+        x_reshaped,
+        W_reshaped,
+        window_strides=(stride_y, stride_x),
+        padding=((pad_top, pad_bottom), (pad_left, pad_right)),
+        dimension_numbers=("NHWC", "OIHW", "NHWC"),
     )
-    out_y = (x.shape[0] - kernel_y) // stride_y + 1
-    out_x = (x.shape[1] - kernel_x) // stride_x + 1
-    rows = []
-    for y_offset in range(kernel_y):
-        cols = []
-        for x_offset in range(kernel_x):
-            cols.append(
-                x[
-                    y_offset : y_offset + out_y * stride_y : stride_y,
-                    x_offset : x_offset + out_x * stride_x : stride_x,
-                ]
-            )
-        rows.append(jnp.stack(cols, axis=2))
-    windows = jnp.stack(rows, axis=2)
-    return jnp.einsum("qphwak,ijhwpkc->ijqac", W, windows) + params.B
+    out_reshaped = jnp.reshape(
+        out_conv,
+        (c, out_conv.shape[1], out_conv.shape[2], q, n),
+    )
+    return jnp.transpose(out_reshaped, (1, 2, 3, 4, 0)) + params.B
+
