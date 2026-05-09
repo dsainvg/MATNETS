@@ -8,6 +8,7 @@ from math import sqrt
 import jax
 import jax.numpy as jnp
 from jax import Array
+from jax.typing import DTypeLike
 
 
 @jax.tree_util.register_pytree_node_class
@@ -43,7 +44,7 @@ def init(
     q: int,
     n: int,
     *,
-    dtype: jnp.dtype = jnp.float32,
+    dtype: DTypeLike = jnp.float32,
 ) -> MatrixParams:
     """Initialize dense matrix parameters with Glorot-uniform weights."""
 

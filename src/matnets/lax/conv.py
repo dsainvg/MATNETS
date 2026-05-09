@@ -79,7 +79,6 @@ def matrix_conv1d(
         msg = "padding must be 'VALID' or 'SAME'"
         raise ValueError(msg)
 
-    c = n
     x_reshaped = jnp.reshape(x, (x.shape[0], p * n, n))
 
     W_trans = jnp.transpose(W, (0, 3, 1, 4, 2))
@@ -136,7 +135,6 @@ def matrix_conv2d(
         msg = "padding must be 'VALID' or 'SAME'"
         raise ValueError(msg)
 
-    c = n
     x_reshaped = jnp.reshape(x, (x.shape[0], x.shape[1], p * n, n))
 
     W_trans = jnp.transpose(W, (0, 4, 1, 5, 2, 3))
@@ -149,5 +147,7 @@ def matrix_conv2d(
         padding=((pad_top, pad_bottom), (pad_left, pad_right)),
         dimension_numbers=("HWCN", "OIHW", "HWCN"),
     )
-    return jnp.reshape(out_conv, (out_conv.shape[0], out_conv.shape[1], q, n, n)) + params.B
-
+    return (
+        jnp.reshape(out_conv, (out_conv.shape[0], out_conv.shape[1], q, n, n))
+        + params.B
+    )
