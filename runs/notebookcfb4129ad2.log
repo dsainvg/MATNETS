@@ -1,0 +1,433 @@
+0.5s 1 /bin/bash: /kaggle/input/pm-118385975-at-05-08-2026-16-17-51/install_requirements.sh: No such file or directory
+7.4s 2 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.4s 3 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.4s 4 0.00s - to python to disable frozen modules.
+7.4s 5 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+8.0s 6 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+8.0s 7 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+8.0s 8 0.00s - to python to disable frozen modules.
+8.0s 9 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+11.4s 10 Collecting git+https://github.com/dsainvg/MATNETS.git
+11.4s 11 Cloning https://github.com/dsainvg/MATNETS.git to /tmp/pip-req-build-xjdqqex6
+11.5s 12 Running command git clone --filter=blob:none --quiet https://github.com/dsainvg/MATNETS.git /tmp/pip-req-build-xjdqqex6
+11.6s 13 Collecting git+https://github.com/dsainvg/MATNETS.git
+11.6s 14 Cloning https://github.com/dsainvg/MATNETS.git to /tmp/pip-req-build-xjdqqex6
+11.7s 15 Running command git clone --filter=blob:none --quiet https://github.com/dsainvg/MATNETS.git /tmp/pip-req-build-xjdqqex6
+11.7s 16 
+11.7s 17 Running command git clone --filter=blob:none --quiet https://github.com/dsainvg/MATNETS.git /tmp/pip-req-build-xjdqqex6
+12.4s 18 Resolved https://github.com/dsainvg/MATNETS.git to commit 4c9c4f418ad5fa1a1dd4d6dde508f820b0560611
+12.4s 19 Installing build dependencies: started
+12.6s 20 Resolved https://github.com/dsainvg/MATNETS.git to commit 4c9c4f418ad5fa1a1dd4d6dde508f820b0560611
+12.6s 21 Installing build dependencies: started
+16.3s 22 Installing build dependencies: finished with status 'done'
+16.3s 23 Getting requirements to build wheel: started
+16.4s 24 Getting requirements to build wheel: finished with status 'done'
+16.4s 25 Preparing metadata (pyproject.toml): started
+16.5s 26 Installing build dependencies: finished with status 'done'
+16.5s 27 Getting requirements to build wheel: started
+16.5s 28 Getting requirements to build wheel: finished with status 'done'
+16.5s 29 Preparing metadata (pyproject.toml): started
+16.6s 30 Preparing metadata (pyproject.toml): finished with status 'done'
+16.6s 31 Requirement already satisfied: jax>=0.4 in /usr/local/lib/python3.12/dist-packages (from matnets==0.1.0) (0.7.2)
+16.6s 32 Requirement already satisfied: jaxlib<=0.7.2,>=0.7.2 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (0.7.2)
+16.6s 33 Requirement already satisfied: ml_dtypes>=0.5.0 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (0.5.4)
+16.6s 34 Requirement already satisfied: numpy>=2.0 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (2.0.2)
+16.6s 35 Requirement already satisfied: opt_einsum in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (3.4.0)
+16.6s 36 Requirement already satisfied: scipy>=1.13 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (1.16.3)
+16.7s 37 Building wheels for collected packages: matnets
+16.7s 38 Building wheel for matnets (pyproject.toml): started
+16.7s 39 Building wheel for matnets (pyproject.toml): finished with status 'done'
+16.7s 40 Created wheel for matnets: filename=matnets-0.1.0-py3-none-any.whl size=8296 sha256=42276636077f52f33a957370e68d34c6e5b427b11483d2055551b5e4ded6e6ef
+16.7s 41 Stored in directory: /tmp/pip-ephem-wheel-cache-dpsb3q1a/wheels/14/a2/12/8e5a567287f1d8ebd2b980cdee3812785b87e4aa916a058b8a
+16.7s 42 Successfully built matnets
+16.8s 43 Preparing metadata (pyproject.toml): finished with status 'done'
+16.8s 44 Requirement already satisfied: jax>=0.4 in /usr/local/lib/python3.12/dist-packages (from matnets==0.1.0) (0.7.2)
+16.8s 45 Requirement already satisfied: jaxlib<=0.7.2,>=0.7.2 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (0.7.2)
+16.8s 46 Requirement already satisfied: ml_dtypes>=0.5.0 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (0.5.4)
+16.8s 47 Requirement already satisfied: numpy>=2.0 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (2.0.2)
+16.8s 48 Requirement already satisfied: opt_einsum in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (3.4.0)
+16.8s 49 Requirement already satisfied: scipy>=1.13 in /usr/local/lib/python3.12/dist-packages (from jax>=0.4->matnets==0.1.0) (1.16.3)
+16.8s 50 Building wheels for collected packages: matnets
+16.8s 51 Building wheel for matnets (pyproject.toml): started
+16.8s 52 Building wheel for matnets (pyproject.toml): finished with status 'done'
+16.8s 53 Created wheel for matnets: filename=matnets-0.1.0-py3-none-any.whl size=8296 sha256=42276636077f52f33a957370e68d34c6e5b427b11483d2055551b5e4ded6e6ef
+16.8s 54 Stored in directory: /tmp/pip-ephem-wheel-cache-dpsb3q1a/wheels/14/a2/12/8e5a567287f1d8ebd2b980cdee3812785b87e4aa916a058b8a
+16.8s 55 Successfully built matnets
+18.8s 56 Installing collected packages: matnets
+18.8s 57 Successfully installed matnets-0.1.0
+19.6s 58 Installing collected packages: matnets
+19.6s 59 Successfully installed matnets-0.1.0
+25.6s 60 Devices: [CudaDevice(id=0), CudaDevice(id=1)]
+25.6s 61 2 device(s), 256/device = 512 total batch
+28.3s 62 2026-05-08 16:18:42.398701: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+28.3s 63 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+28.3s 64 E0000 00:00:1778257122.617769      25 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+28.3s 65 E0000 00:00:1778257122.685211      25 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+28.3s 66 W0000 00:00:1778257123.183864      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.3s 67 W0000 00:00:1778257123.183907      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.3s 68 W0000 00:00:1778257123.183910      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.3s 69 W0000 00:00:1778257123.183912      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 70 2026-05-08 16:18:42.398701: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+28.5s 71 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+28.5s 72 E0000 00:00:1778257122.617769      25 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+28.5s 73 E0000 00:00:1778257122.685211      25 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+28.5s 74 W0000 00:00:1778257123.183864      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 75 W0000 00:00:1778257123.183907      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 76 W0000 00:00:1778257123.183910      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 77 W0000 00:00:1778257123.183912      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 78 
+28.5s 79 2026-05-08 16:18:42.398701: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+28.5s 80 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+28.5s 81 E0000 00:00:1778257122.617769      25 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+28.5s 82 E0000 00:00:1778257122.685211      25 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+28.5s 83 W0000 00:00:1778257123.183864      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 84 W0000 00:00:1778257123.183907      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 85 W0000 00:00:1778257123.183910      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+28.5s 86 W0000 00:00:1778257123.183912      25 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+48.5s 87 Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+48.6s 88 [1m       0/11490434[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 0s/step[1m11490434/11490434[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 0us/step
+50.1s 89 std shape: (60000, 28, 28, 1)   mat shape: (60000, 28, 28, 1, 4, 4)
+50.3s 90 MatCNN: C=32,64,128,256,256  H=1024,1024,1024
+58.8s 91 MatCNN params: 53,608,608
+390.2s 92 [MatCNN] Epoch  1/25  loss=2.1992  test_acc=24.67%  (330.3s)
+659.1s 93 [MatCNN] Epoch  2/25  loss=1.7906  test_acc=38.02%  (268.8s)
+928.3s 94 [MatCNN] Epoch  3/25  loss=1.2144  test_acc=65.80%  (269.3s)
+1197.9s 95 [MatCNN] Epoch  4/25  loss=0.7589  test_acc=80.66%  (269.5s)
+1467.5s 96 [MatCNN] Epoch  5/25  loss=0.4433  test_acc=91.91%  (269.6s)
+1737.0s 97 [MatCNN] Epoch  6/25  loss=0.2541  test_acc=93.09%  (269.6s)
+2006.7s 98 [MatCNN] Epoch  7/25  loss=0.1762  test_acc=95.45%  (269.7s)
+2276.2s 99 [MatCNN] Epoch  8/25  loss=0.1377  test_acc=96.64%  (269.5s)
+2545.9s 100 [MatCNN] Epoch  9/25  loss=0.1075  test_acc=96.02%  (269.7s)
+2815.5s 101 [MatCNN] Epoch 10/25  loss=0.1012  test_acc=97.04%  (269.6s)
+3084.9s 102 [MatCNN] Epoch 11/25  loss=0.0830  test_acc=97.74%  (269.4s)
+3354.5s 103 [MatCNN] Epoch 12/25  loss=0.0726  test_acc=97.12%  (269.6s)
+3623.8s 104 [MatCNN] Epoch 13/25  loss=0.0629  test_acc=97.92%  (269.3s)
+3892.8s 105 [MatCNN] Epoch 14/25  loss=0.0585  test_acc=98.02%  (269.1s)
+4161.8s 106 [MatCNN] Epoch 15/25  loss=0.0510  test_acc=98.34%  (268.9s)
+4431.1s 107 [MatCNN] Epoch 16/25  loss=0.0467  test_acc=98.14%  (269.3s)
+4700.4s 108 [MatCNN] Epoch 17/25  loss=0.0448  test_acc=97.81%  (269.3s)
+4969.9s 109 [MatCNN] Epoch 18/25  loss=0.0416  test_acc=98.41%  (269.5s)
+5239.4s 110 [MatCNN] Epoch 19/25  loss=0.0358  test_acc=98.50%  (269.5s)
+5508.6s 111 [MatCNN] Epoch 20/25  loss=0.0342  test_acc=98.73%  (269.1s)
+5777.7s 112 [MatCNN] Epoch 21/25  loss=0.0283  test_acc=98.66%  (269.1s)
+6046.8s 113 [MatCNN] Epoch 22/25  loss=0.0340  test_acc=98.56%  (269.1s)
+6316.1s 114 [MatCNN] Epoch 23/25  loss=0.0233  test_acc=98.68%  (269.4s)
+6585.1s 115 [MatCNN] Epoch 24/25  loss=0.0245  test_acc=98.97%  (269.0s)
+6854.0s 116 [MatCNN] Epoch 25/25  loss=0.0262  test_acc=98.69%  (269.1s)
+6860.7s 117 CapsNet params: 31,208,720
+6862.9s 118 E0508 18:12:37.834015     120 slow_operation_alarm.cc:73] Constant folding an instruction is taking > 1s:
+6862.9s 119 
+6862.9s 120 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.65, %constant.210), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_train_step)/jvp(CapsNet)/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+6862.9s 121 
+6862.9s 122 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+6862.9s 123 
+6862.9s 124 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+6863.1s 125 E0508 18:12:37.834015     120 slow_operation_alarm.cc:73] Constant folding an instruction is taking > 1s:
+6863.1s 126 
+6863.1s 127 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.65, %constant.210), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_train_step)/jvp(CapsNet)/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+6863.1s 128 
+6863.1s 129 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+6863.1s 130 
+6863.1s 131 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+6863.1s 132 
+6863.1s 133 E0508 18:12:37.834015     120 slow_operation_alarm.cc:73] Constant folding an instruction is taking > 1s:
+6863.1s 134 
+6863.1s 135 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.65, %constant.210), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_train_step)/jvp(CapsNet)/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+6863.1s 136 
+6863.1s 137 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+6863.1s 138 
+6863.1s 139 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+6866.1s 140 E0508 18:12:40.962732      25 slow_operation_alarm.cc:140] The operation took 4.131644345s
+6866.1s 141 Constant folding an instruction is taking > 1s:
+6866.1s 142 
+6866.1s 143 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.65, %constant.210), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_train_step)/jvp(CapsNet)/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+6866.1s 144 
+6866.1s 145 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+6866.1s 146 
+6866.1s 147 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+6866.3s 148 E0508 18:12:40.962732      25 slow_operation_alarm.cc:140] The operation took 4.131644345s
+6866.3s 149 Constant folding an instruction is taking > 1s:
+6866.3s 150 
+6866.3s 151 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.65, %constant.210), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_train_step)/jvp(CapsNet)/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+6866.3s 152 
+6866.3s 153 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+6866.3s 154 
+6866.3s 155 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+6866.3s 156 
+6866.3s 157 E0508 18:12:40.962732      25 slow_operation_alarm.cc:140] The operation took 4.131644345s
+6866.3s 158 Constant folding an instruction is taking > 1s:
+6866.3s 159 
+6866.3s 160 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.65, %constant.210), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_train_step)/jvp(CapsNet)/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+6866.3s 161 
+6866.3s 162 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+6866.3s 163 
+6866.3s 164 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+6871.9s 165 E0508 18:12:46.759394     120 slow_operation_alarm.cc:73] Trying algorithm eng0{} for conv (f32[256,512,6,6]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[512,512,9,9]{3,2,1,0}, f32[512]{0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6872.1s 166 E0508 18:12:46.759394     120 slow_operation_alarm.cc:73] Trying algorithm eng0{} for conv (f32[256,512,6,6]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[512,512,9,9]{3,2,1,0}, f32[512]{0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6872.1s 167 
+6872.1s 168 E0508 18:12:46.759394     120 slow_operation_alarm.cc:73] Trying algorithm eng0{} for conv (f32[256,512,6,6]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[512,512,9,9]{3,2,1,0}, f32[512]{0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6876.2s 169 E0508 18:12:51.107341      25 slow_operation_alarm.cc:140] The operation took 5.348071652s
+6876.2s 170 Trying algorithm eng0{} for conv (f32[256,512,6,6]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[512,512,9,9]{3,2,1,0}, f32[512]{0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6876.4s 171 E0508 18:12:51.107341      25 slow_operation_alarm.cc:140] The operation took 5.348071652s
+6876.4s 172 Trying algorithm eng0{} for conv (f32[256,512,6,6]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[512,512,9,9]{3,2,1,0}, f32[512]{0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6876.4s 173 
+6876.4s 174 E0508 18:12:51.107341      25 slow_operation_alarm.cc:140] The operation took 5.348071652s
+6876.4s 175 Trying algorithm eng0{} for conv (f32[256,512,6,6]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[512,512,9,9]{3,2,1,0}, f32[512]{0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBiasActivationForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6877.8s 176 E0508 18:12:52.746894     120 slow_operation_alarm.cc:73] Trying algorithm eng30{k2=1,k4=3,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6878.1s 177 E0508 18:12:52.746894     120 slow_operation_alarm.cc:73] Trying algorithm eng30{k2=1,k4=3,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6878.1s 178 
+6878.1s 179 E0508 18:12:52.746894     120 slow_operation_alarm.cc:73] Trying algorithm eng30{k2=1,k4=3,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6881.2s 180 E0508 18:12:56.053767      25 slow_operation_alarm.cc:140] The operation took 4.306975721s
+6881.2s 181 Trying algorithm eng30{k2=1,k4=3,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6881.4s 182 E0508 18:12:56.053767      25 slow_operation_alarm.cc:140] The operation took 4.306975721s
+6881.4s 183 Trying algorithm eng30{k2=1,k4=3,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6881.4s 184 
+6881.4s 185 E0508 18:12:56.053767      25 slow_operation_alarm.cc:140] The operation took 4.306975721s
+6881.4s 186 Trying algorithm eng30{k2=1,k4=3,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6882.2s 187 E0508 18:12:57.054015     120 slow_operation_alarm.cc:73] Trying algorithm eng34{k2=2,k4=2,k5=0,k6=0,k7=0,k19=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6882.4s 188 E0508 18:12:57.054015     120 slow_operation_alarm.cc:73] Trying algorithm eng34{k2=2,k4=2,k5=0,k6=0,k7=0,k19=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6882.4s 189 
+6882.4s 190 E0508 18:12:57.054015     120 slow_operation_alarm.cc:73] Trying algorithm eng34{k2=2,k4=2,k5=0,k6=0,k7=0,k19=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6887.9s 191 E0508 18:13:02.774664      25 slow_operation_alarm.cc:140] The operation took 6.720754626s
+6887.9s 192 Trying algorithm eng34{k2=2,k4=2,k5=0,k6=0,k7=0,k19=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6888.1s 193 E0508 18:13:02.774664      25 slow_operation_alarm.cc:140] The operation took 6.720754626s
+6888.1s 194 Trying algorithm eng34{k2=2,k4=2,k5=0,k6=0,k7=0,k19=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6888.1s 195 
+6888.1s 196 E0508 18:13:02.774664      25 slow_operation_alarm.cc:140] The operation took 6.720754626s
+6888.1s 197 Trying algorithm eng34{k2=2,k4=2,k5=0,k6=0,k7=0,k19=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6888.9s 198 E0508 18:13:03.774877     120 slow_operation_alarm.cc:73] Trying algorithm eng42{k2=1,k4=2,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6889.1s 199 E0508 18:13:03.774877     120 slow_operation_alarm.cc:73] Trying algorithm eng42{k2=1,k4=2,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6889.1s 200 
+6889.1s 201 E0508 18:13:03.774877     120 slow_operation_alarm.cc:73] Trying algorithm eng42{k2=1,k4=2,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6892.6s 202 E0508 18:13:07.501660      25 slow_operation_alarm.cc:140] The operation took 4.726907368s
+6892.6s 203 Trying algorithm eng42{k2=1,k4=2,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6892.8s 204 E0508 18:13:07.501660      25 slow_operation_alarm.cc:140] The operation took 4.726907368s
+6892.8s 205 Trying algorithm eng42{k2=1,k4=2,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6892.8s 206 
+6892.8s 207 E0508 18:13:07.501660      25 slow_operation_alarm.cc:140] The operation took 4.726907368s
+6892.8s 208 Trying algorithm eng42{k2=1,k4=2,k5=1,k6=0,k7=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6893.6s 209 E0508 18:13:08.501867     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=1,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6893.8s 210 E0508 18:13:08.501867     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=1,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6893.8s 211 
+6893.8s 212 E0508 18:13:08.501867     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=1,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6902.1s 213 E0508 18:13:17.004440      25 slow_operation_alarm.cc:140] The operation took 9.502687531s
+6902.1s 214 Trying algorithm eng28{k2=1,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6902.3s 215 E0508 18:13:17.004440      25 slow_operation_alarm.cc:140] The operation took 9.502687531s
+6902.3s 216 Trying algorithm eng28{k2=1,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6902.3s 217 
+6902.3s 218 E0508 18:13:17.004440      25 slow_operation_alarm.cc:140] The operation took 9.502687531s
+6902.3s 219 Trying algorithm eng28{k2=1,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6903.1s 220 E0508 18:13:18.004661     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=3,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6903.3s 221 E0508 18:13:18.004661     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=3,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6903.3s 222 
+6903.3s 223 E0508 18:13:18.004661     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=3,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6916.5s 224 E0508 18:13:31.375408      25 slow_operation_alarm.cc:140] The operation took 14.370861111s
+6916.5s 225 Trying algorithm eng28{k2=3,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6916.7s 226 E0508 18:13:31.375408      25 slow_operation_alarm.cc:140] The operation took 14.370861111s
+6916.7s 227 Trying algorithm eng28{k2=3,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6916.7s 228 
+6916.7s 229 E0508 18:13:31.375408      25 slow_operation_alarm.cc:140] The operation took 14.370861111s
+6916.7s 230 Trying algorithm eng28{k2=3,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6917.5s 231 E0508 18:13:32.375592     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6917.7s 232 E0508 18:13:32.375592     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6917.7s 233 
+6917.7s 234 E0508 18:13:32.375592     120 slow_operation_alarm.cc:73] Trying algorithm eng28{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6931.6s 235 E0508 18:13:46.530194      25 slow_operation_alarm.cc:140] The operation took 15.154689785s
+6931.6s 236 Trying algorithm eng28{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6931.8s 237 E0508 18:13:46.530194      25 slow_operation_alarm.cc:140] The operation took 15.154689785s
+6931.8s 238 Trying algorithm eng28{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6931.8s 239 
+6931.8s 240 E0508 18:13:46.530194      25 slow_operation_alarm.cc:140] The operation took 15.154689785s
+6931.8s 241 Trying algorithm eng28{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6932.6s 242 E0508 18:13:47.530398     120 slow_operation_alarm.cc:73] Trying algorithm eng1{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6932.8s 243 E0508 18:13:47.530398     120 slow_operation_alarm.cc:73] Trying algorithm eng1{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6932.8s 244 
+6932.8s 245 E0508 18:13:47.530398     120 slow_operation_alarm.cc:73] Trying algorithm eng1{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6945.6s 246 E0508 18:14:00.449456      25 slow_operation_alarm.cc:140] The operation took 13.919160883s
+6945.6s 247 Trying algorithm eng1{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6945.8s 248 E0508 18:14:00.449456      25 slow_operation_alarm.cc:140] The operation took 13.919160883s
+6945.8s 249 Trying algorithm eng1{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6945.8s 250 
+6945.8s 251 E0508 18:14:00.449456      25 slow_operation_alarm.cc:140] The operation took 13.919160883s
+6945.8s 252 Trying algorithm eng1{k2=4,k3=0} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6946.6s 253 E0508 18:14:01.449689     120 slow_operation_alarm.cc:73] Trying algorithm eng0{} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6946.8s 254 E0508 18:14:01.449689     120 slow_operation_alarm.cc:73] Trying algorithm eng0{} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6946.8s 255 
+6946.8s 256 E0508 18:14:01.449689     120 slow_operation_alarm.cc:73] Trying algorithm eng0{} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6996.5s 257 E0508 18:14:51.378830      25 slow_operation_alarm.cc:140] The operation took 50.929264586s
+6996.5s 258 Trying algorithm eng0{} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6996.7s 259 E0508 18:14:51.378830      25 slow_operation_alarm.cc:140] The operation took 50.929264586s
+6996.7s 260 Trying algorithm eng0{} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6996.7s 261 
+6996.7s 262 E0508 18:14:51.378830      25 slow_operation_alarm.cc:140] The operation took 50.929264586s
+6996.7s 263 Trying algorithm eng0{} for conv (f32[512,256,20,20]{3,2,1,0}, u8[0]{0}) custom-call(f32[512,512,30,30]{3,2,1,0}, f32[256,512,11,11]{3,2,1,0}), window={size=11x11 rhs_reversal=1x1}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convForward", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6999.5s 264 E0508 18:14:54.418848     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=4,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6999.7s 265 E0508 18:14:54.577915      25 slow_operation_alarm.cc:140] The operation took 1.159161096s
+6999.7s 266 Trying algorithm eng20{k2=4,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6999.7s 267 E0508 18:14:54.418848     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=4,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6999.7s 268 E0508 18:14:54.577915      25 slow_operation_alarm.cc:140] The operation took 1.159161096s
+6999.7s 269 Trying algorithm eng20{k2=4,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6999.7s 270 
+6999.7s 271 E0508 18:14:54.418848     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=4,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+6999.7s 272 E0508 18:14:54.577915      25 slow_operation_alarm.cc:140] The operation took 1.159161096s
+6999.7s 273 Trying algorithm eng20{k2=4,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7000.7s 274 E0508 18:14:55.578239     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=2,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7000.8s 275 E0508 18:14:55.658216      25 slow_operation_alarm.cc:140] The operation took 1.080169328s
+7000.8s 276 Trying algorithm eng20{k2=2,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7000.9s 277 E0508 18:14:55.578239     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=2,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7000.9s 278 E0508 18:14:55.658216      25 slow_operation_alarm.cc:140] The operation took 1.080169328s
+7000.9s 279 Trying algorithm eng20{k2=2,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7000.9s 280 
+7000.9s 281 E0508 18:14:55.578239     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=2,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7000.9s 282 E0508 18:14:55.658216      25 slow_operation_alarm.cc:140] The operation took 1.080169328s
+7000.9s 283 Trying algorithm eng20{k2=2,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7001.8s 284 E0508 18:14:56.658435     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=7,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7002.0s 285 E0508 18:14:56.658435     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=7,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7002.0s 286 
+7002.0s 287 E0508 18:14:56.658435     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=7,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7002.1s 288 E0508 18:14:56.998518      25 slow_operation_alarm.cc:140] The operation took 1.340184643s
+7002.1s 289 Trying algorithm eng20{k2=7,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7002.3s 290 E0508 18:14:56.998518      25 slow_operation_alarm.cc:140] The operation took 1.340184643s
+7002.3s 291 Trying algorithm eng20{k2=7,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7002.3s 292 
+7002.3s 293 E0508 18:14:56.998518      25 slow_operation_alarm.cc:140] The operation took 1.340184643s
+7002.3s 294 Trying algorithm eng20{k2=7,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7003.8s 295 E0508 18:14:58.704522     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=6,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7004.0s 296 E0508 18:14:58.704522     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=6,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7004.0s 297 
+7004.0s 298 E0508 18:14:58.704522     120 slow_operation_alarm.cc:73] Trying algorithm eng20{k2=6,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7004.2s 299 E0508 18:14:59.092454      25 slow_operation_alarm.cc:140] The operation took 1.388038131s
+7004.2s 300 Trying algorithm eng20{k2=6,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7004.4s 301 E0508 18:14:59.092454      25 slow_operation_alarm.cc:140] The operation took 1.388038131s
+7004.4s 302 Trying algorithm eng20{k2=6,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7004.4s 303 
+7004.4s 304 E0508 18:14:59.092454      25 slow_operation_alarm.cc:140] The operation took 1.388038131s
+7004.4s 305 Trying algorithm eng20{k2=6,k3=0} for conv (f32[512,512,9,9]{3,2,1,0}, u8[0]{0}) custom-call(f32[256,512,20,20]{3,2,1,0}, f32[256,512,6,6]{3,2,1,0}), window={size=9x9 stride=2x2}, dim_labels=bf01_oi01->bf01, custom_call_target="__cudnn$convBackwardFilter", backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"cudnn_conv_backend_config":{"activation_mode":"kNone","conv_result_scale":1,"side_input_scale":0,"leakyrelu_alpha":0},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"} is taking a while...
+7004.4s 306 E0508 18:14:59.347135      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.5s 307 E0508 18:14:59.349215      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.5s 308 E0508 18:14:59.351117      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.5s 309 E0508 18:14:59.353046      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.5s 310 E0508 18:14:59.355275      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 311 E0508 18:14:59.347135      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 312 E0508 18:14:59.349215      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 313 E0508 18:14:59.351117      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 314 E0508 18:14:59.353046      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 315 E0508 18:14:59.355275      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 316 
+7004.7s 317 E0508 18:14:59.347135      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 318 E0508 18:14:59.349215      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 319 E0508 18:14:59.351117      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 320 E0508 18:14:59.353046      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7004.7s 321 E0508 18:14:59.355275      25 buffer_comparator.cc:150] Difference at 32286: 17.4137, expected 15
+7054.8s 322 E0508 18:15:49.724027     120 slow_operation_alarm.cc:73] Constant folding an instruction is taking > 2s:
+7054.8s 323 
+7054.8s 324 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.18, %constant.30), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_eval_step)/CapsNet/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+7054.8s 325 
+7054.8s 326 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+7054.8s 327 
+7054.8s 328 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+7055.1s 329 E0508 18:15:49.724027     120 slow_operation_alarm.cc:73] Constant folding an instruction is taking > 2s:
+7055.1s 330 
+7055.1s 331 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.18, %constant.30), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_eval_step)/CapsNet/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+7055.1s 332 
+7055.1s 333 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+7055.1s 334 
+7055.1s 335 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+7055.1s 336 
+7055.1s 337 E0508 18:15:49.724027     120 slow_operation_alarm.cc:73] Constant folding an instruction is taking > 2s:
+7055.1s 338 
+7055.1s 339 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.18, %constant.30), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_eval_step)/CapsNet/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+7055.1s 340 
+7055.1s 341 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+7055.1s 342 
+7055.1s 343 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+7057.0s 344 E0508 18:15:51.919608      25 slow_operation_alarm.cc:140] The operation took 4.196861221s
+7057.0s 345 Constant folding an instruction is taking > 2s:
+7057.0s 346 
+7057.0s 347 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.18, %constant.30), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_eval_step)/CapsNet/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+7057.0s 348 
+7057.0s 349 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+7057.0s 350 
+7057.0s 351 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+7057.2s 352 E0508 18:15:51.919608      25 slow_operation_alarm.cc:140] The operation took 4.196861221s
+7057.2s 353 Constant folding an instruction is taking > 2s:
+7057.2s 354 
+7057.2s 355 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.18, %constant.30), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_eval_step)/CapsNet/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+7057.2s 356 
+7057.2s 357 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+7057.2s 358 
+7057.2s 359 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+7057.2s 360 
+7057.2s 361 E0508 18:15:51.919608      25 slow_operation_alarm.cc:140] The operation took 4.196861221s
+7057.2s 362 Constant folding an instruction is taking > 2s:
+7057.2s 363 
+7057.2s 364 %reduce_max.21 = f32[256,1152]{1,0} reduce(%broadcast_in_dim.18, %constant.30), dimensions={2}, to_apply=%region_1.3, metadata={op_name="pmap(caps_eval_step)/CapsNet/DigitCaps_0/reduce_max" source_file="/tmp/ipykernel_25/2693822515.py" source_line=34 source_end_line=34 source_column=16 source_end_column=42}
+7057.2s 365 
+7057.2s 366 This isn't necessarily a bug; constant-folding is inherently a trade-off between compilation time and speed at runtime. XLA has some guards that attempt to keep constant folding from taking too long, but fundamentally you'll always be able to come up with an input program that takes a long time.
+7057.2s 367 
+7057.2s 368 If you'd like to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+7060.4s 369 [CapsNet] Epoch  1/25  loss=0.2808  test_acc=96.68%  (199.0s)
+7107.5s 370 [CapsNet] Epoch  2/25  loss=0.0519  test_acc=98.75%  (47.0s)
+7154.1s 371 [CapsNet] Epoch  3/25  loss=0.0349  test_acc=99.06%  (46.6s)
+7201.3s 372 [CapsNet] Epoch  4/25  loss=0.0274  test_acc=99.35%  (47.2s)
+7249.0s 373 [CapsNet] Epoch  5/25  loss=0.0226  test_acc=99.29%  (47.7s)
+7297.0s 374 [CapsNet] Epoch  6/25  loss=0.0189  test_acc=99.20%  (48.0s)
+7344.9s 375 [CapsNet] Epoch  7/25  loss=0.0163  test_acc=99.37%  (47.9s)
+7392.9s 376 [CapsNet] Epoch  8/25  loss=0.0140  test_acc=99.34%  (48.0s)
+7440.8s 377 [CapsNet] Epoch  9/25  loss=0.0120  test_acc=99.33%  (47.9s)
+7488.7s 378 [CapsNet] Epoch 10/25  loss=0.0107  test_acc=99.40%  (47.9s)
+7536.6s 379 [CapsNet] Epoch 11/25  loss=0.0096  test_acc=99.42%  (47.9s)
+7584.8s 380 [CapsNet] Epoch 12/25  loss=0.0087  test_acc=99.36%  (48.2s)
+7632.8s 381 [CapsNet] Epoch 13/25  loss=0.0081  test_acc=99.35%  (48.0s)
+7680.9s 382 [CapsNet] Epoch 14/25  loss=0.0075  test_acc=99.40%  (48.1s)
+7729.0s 383 [CapsNet] Epoch 15/25  loss=0.0071  test_acc=99.40%  (48.1s)
+7776.9s 384 [CapsNet] Epoch 16/25  loss=0.0067  test_acc=99.39%  (48.0s)
+7824.9s 385 [CapsNet] Epoch 17/25  loss=0.0064  test_acc=99.47%  (48.0s)
+7873.0s 386 [CapsNet] Epoch 18/25  loss=0.0060  test_acc=99.44%  (48.1s)
+7920.9s 387 [CapsNet] Epoch 19/25  loss=0.0057  test_acc=99.41%  (48.0s)
+7969.2s 388 [CapsNet] Epoch 20/25  loss=0.0054  test_acc=99.39%  (48.2s)
+8017.3s 389 [CapsNet] Epoch 21/25  loss=0.0051  test_acc=99.46%  (48.1s)
+8065.4s 390 [CapsNet] Epoch 22/25  loss=0.0049  test_acc=99.43%  (48.1s)
+8113.6s 391 [CapsNet] Epoch 23/25  loss=0.0047  test_acc=99.42%  (48.2s)
+8161.8s 392 [CapsNet] Epoch 24/25  loss=0.0045  test_acc=99.39%  (48.2s)
+8209.6s 393 [CapsNet] Epoch 25/25  loss=0.0043  test_acc=99.44%  (48.0s)
+8215.9s 394 StandardCNN params: 39,614,474
+8243.9s 395 [StdCNN]  Epoch  1/25  loss=1.2941  test_acc=92.80%  (27.1s)
+8257.0s 396 [StdCNN]  Epoch  2/25  loss=0.1315  test_acc=98.39%  (13.1s)
+8270.1s 397 [StdCNN]  Epoch  3/25  loss=0.0472  test_acc=98.36%  (13.1s)
+8283.0s 398 [StdCNN]  Epoch  4/25  loss=0.0338  test_acc=98.88%  (12.9s)
+8295.8s 399 [StdCNN]  Epoch  5/25  loss=0.0227  test_acc=99.13%  (12.8s)
+8308.5s 400 [StdCNN]  Epoch  6/25  loss=0.0166  test_acc=99.04%  (12.8s)
+8321.3s 401 [StdCNN]  Epoch  7/25  loss=0.0147  test_acc=98.86%  (12.7s)
+8334.1s 402 [StdCNN]  Epoch  8/25  loss=0.0094  test_acc=98.92%  (12.8s)
+8347.0s 403 [StdCNN]  Epoch  9/25  loss=0.0107  test_acc=99.22%  (12.9s)
+8359.8s 404 [StdCNN]  Epoch 10/25  loss=0.0107  test_acc=98.96%  (12.9s)
+8372.7s 405 [StdCNN]  Epoch 11/25  loss=0.0082  test_acc=99.20%  (12.9s)
+8385.5s 406 [StdCNN]  Epoch 12/25  loss=0.0073  test_acc=99.12%  (12.8s)
+8398.2s 407 [StdCNN]  Epoch 13/25  loss=0.0095  test_acc=99.15%  (12.7s)
+8411.0s 408 [StdCNN]  Epoch 14/25  loss=0.0084  test_acc=99.03%  (12.7s)
+8423.7s 409 [StdCNN]  Epoch 15/25  loss=0.0089  test_acc=99.11%  (12.8s)
+8436.5s 410 [StdCNN]  Epoch 16/25  loss=0.0041  test_acc=98.67%  (12.8s)
+8449.3s 411 [StdCNN]  Epoch 17/25  loss=0.0068  test_acc=98.94%  (12.8s)
+8462.0s 412 [StdCNN]  Epoch 18/25  loss=0.0078  test_acc=99.04%  (12.7s)
+8474.7s 413 [StdCNN]  Epoch 19/25  loss=0.0031  test_acc=99.25%  (12.7s)
+8487.4s 414 [StdCNN]  Epoch 20/25  loss=0.0061  test_acc=99.09%  (12.7s)
+8500.1s 415 [StdCNN]  Epoch 21/25  loss=0.0046  test_acc=99.14%  (12.7s)
+8512.8s 416 [StdCNN]  Epoch 22/25  loss=0.0036  test_acc=98.78%  (12.7s)
+8525.5s 417 [StdCNN]  Epoch 23/25  loss=0.0053  test_acc=99.06%  (12.7s)
+8538.3s 418 [StdCNN]  Epoch 24/25  loss=0.0065  test_acc=98.99%  (12.8s)
+8550.9s 419 [StdCNN]  Epoch 25/25  loss=0.0064  test_acc=98.87%  (12.8s)
+8551.7s 420 
+8551.7s 421 Final MatCNN  test acc: 98.69%
+8551.7s 422 Final CapsNet test acc: 99.44%
+8551.7s 423 Final StdCNN  test acc: 98.87%
+8558.3s 424 /usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+8558.3s 425 cells[i][c] = re.sub('\\\\\|', '|', cell)
+8558.5s 426 /usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+8558.5s 427 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+8559.1s 428 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+8559.5s 429 [NbConvertApp] Writing 142924 bytes to __notebook__.ipynb
+8562.1s 430 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+8563.1s 431 [NbConvertApp] Support files will be in __results___files/
+8563.1s 432 [NbConvertApp] Making directory __results___files
+8563.1s 433 [NbConvertApp] Writing 416458 bytes to __results__.html
