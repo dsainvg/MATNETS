@@ -36,17 +36,25 @@ Weights use Glorot-uniform initialization. Bias starts at zero.
 ## `matnets.activations`
 
 ```python
-from matnets.activations import relu, relud, leaky_relud
+from matnets.activations import (
+    relu, relud, leaky_relu, leaky_relud, elu, elud
+)
 ```
 
-Activations can be passed to `dense` or recurrent steps.
+### ReLU Family (Branching/Gated)
 
-- `relu`: Standard element-wise maximum with zero.
-- `relud`: Determinant-based activation. Returns the input matrix if its
-  determinant is positive, otherwise returns a zero matrix of the same shape.
-- `leaky_relud`: Leaky determinant-based activation. Returns the input matrix if
-  its determinant is positive, otherwise returns the input matrix scaled by
-  `negative_slope` (default 0.01).
+These activations use the determinant of the matrix-neuron as a branching
+condition.
+
+- **`relu(x)`**: Standard element-wise maximum with zero.
+- **`relud(x)`**: Determinant-gated ReLU. Returns $X$ if $\text{det}(X) > 0$,
+  else $0$.
+- **`leaky_relu(x, negative_slope=0.01)`**: Standard element-wise leaky ReLU.
+- **`leaky_relud(x, negative_slope=0.01)`**: Determinant-gated leaky ReLU.
+  Returns $X$ if $\text{det}(X) > 0$, else `negative_slope * X`.
+- **`elu(x, alpha=1.0)`**: Standard element-wise ELU.
+- **`elud(x, alpha=1.0)`**: Determinant-gated ELU. Returns $X$ if
+  $\text{det}(X) > 0$, else `alpha * (expm(X) - I)`.
 
 ## `matnets.dense`
 
@@ -66,7 +74,8 @@ y:        (q, n, n)
 With activation:
 
 ```python
-y = matnets.dense(params, x, activation=jax.nn.relu)
+from matnets.activations import relud
+y = matnets.dense(params, x, activation=relud)
 ```
 
 The core operation is:

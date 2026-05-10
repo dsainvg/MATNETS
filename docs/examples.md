@@ -49,6 +49,15 @@ Demonstrates downsampling a 1D sequence using `maxd_pool1d` and `avgd_pool1d`.
 Shows how pooling integrates into a standard Flax model with matrix
 convolutions.
 
+## Activations
+
+```powershell
+.\.venv\Scripts\python.exe examples\11_activations.py
+```
+
+Contrasts element-wise `relu` with structural `relud` and `elud`, showing how
+determinant-gating preserves or filters entire matrix-neurons.
+
 ## Where Parallelization Happens
 
 The dense operation:

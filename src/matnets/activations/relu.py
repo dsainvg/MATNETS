@@ -1,40 +1,43 @@
 import jax
+import jax.nn as jnn
 import jax.numpy as jnp
+from jax.scipy.linalg import expm
 
-
-def relu(x: jax.Array) -> jax.Array:
-    """Element-wise rectified linear unit."""
-    return jnp.maximum(0, x)
+relu = jnn.relu
+leaky_relu = jnn.leaky_relu
+elu = jnn.elu
 
 
 def relud(x: jax.Array) -> jax.Array:
-    """Rectified linear unit based on the determinant of the last two axes.
+    """Determinant-gated matrix ReLU.
 
-    If the determinant of the last two axes is positive, the input is returned
-    unchanged. Otherwise, all elements are set to zero.
-
-    Args:
-        x: Input JAX array of shape (..., n, n).
-
-    Returns:
-        The activated array.
+    Returns the input matrix if its determinant is positive, otherwise zeros.
     """
     dets = jnp.linalg.det(x)
     return jnp.where(dets[..., jnp.newaxis, jnp.newaxis] > 0, x, 0.0)
 
 
 def leaky_relud(x: jax.Array, negative_slope: float = 0.01) -> jax.Array:
-    """Leaky rectified linear unit based on the determinant of the last two axes.
+    """Determinant-gated matrix leaky ReLU.
 
-    If the determinant of the last two axes is positive, the input is returned
-    unchanged. Otherwise, the matrix is scaled by `negative_slope`.
-
-    Args:
-        x: Input JAX array of shape (..., n, n).
-        negative_slope: The slope for the non-positive determinant case.
-
-    Returns:
-        The activated array.
+    Returns the input matrix if its determinant is positive, otherwise scales it
+    by `negative_slope`.
     """
     dets = jnp.linalg.det(x)
     return jnp.where(dets[..., jnp.newaxis, jnp.newaxis] > 0, x, negative_slope * x)
+
+
+def elud(x: jax.Array, alpha: float = 1.0) -> jax.Array:
+    """Determinant-gated matrix ELU.
+
+    Returns the input matrix if its determinant is positive, otherwise uses the
+    matrix exponential branch: alpha * (expm(X) - I).
+    """
+    dets = jnp.linalg.det(x)
+    n = x.shape[-1]
+    Ident = jnp.eye(n)
+    neg_branch = alpha * (expm(x) - Ident)
+    # Cast to jax.Array to satisfy mypy's no-any-return check on jnp.where
+    return jax.lax.convert_element_type(
+        jnp.where(dets[..., jnp.newaxis, jnp.newaxis] > 0, x, neg_branch), x.dtype
+    )

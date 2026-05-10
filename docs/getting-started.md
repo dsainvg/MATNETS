@@ -24,7 +24,9 @@ import matnets as mtn
 
 params = mtn.init(jax.random.key(0), p=2, q=3, n=2)
 x = jnp.ones((2, 2, 2))
-y = mtn.dense(params, x, activation=jax.nn.relu)
+
+# Use determinant-based structural activation
+y = mtn.dense(params, x, activation=mtn.activations.relud)
 
 print(y.shape)  # (3, 2, 2)
 ```

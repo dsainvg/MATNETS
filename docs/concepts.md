@@ -94,23 +94,21 @@ determinant.
 
 Like pooling, activations in MATNETS can be element-wise or structural.
 
-### `relu`
+### Element-wise Activations
 
-The standard `relu` activation operates element-wise on every entry of every
-matrix-neuron.
+Standard activations like `relu`, `leaky_relu`, and `elu` can be applied to
+matrix-valued neurons. In this case, the scalar function is applied to every
+entry in the $n \times n$ matrix independently.
 
-### `relud`
+### Determinant-based Matrix Activations (Gated)
 
-`relud` (Determinant ReLU) is a structural activation. It calculates the
-determinant of each matrix-neuron. If the determinant is positive, the matrix
-is kept as-is. If the determinant is zero or negative, the entire matrix is set
-to zero. This ensures that only matrix-neurons representing "positive" linear
-transformations (or those with preserved orientation) pass through the layer.
+MATNETS introduces structural activations that treat the $n \times n$ neuron as
+a single unit by gating or branching based on its determinant.
 
-### `leaky_relud`
-
-`leaky_relud` is the leaky version of `relud`. If the determinant is positive,
-it behaves like `relud`. If the determinant is zero or negative, instead of
-zeroing the matrix, it scales the entire matrix by a small `negative_slope`.
-This allows a small amount of information (and gradient) to flow even when the
-transformation is not orientation-preserving.
+- **`relud`**: Returns the input matrix if its determinant is positive,
+  otherwise zeros it out. This ensures only orientations-preserving
+  transformations pass.
+- **`leaky_relud`**: Similar to `relud`, but scales the matrix by a small
+  $\alpha$ if the determinant is non-positive, allowing some gradient flow.
+- **`elud`**: Returns the input matrix if the determinant is positive, else
+  applies the matrix-exponential branch $\alpha(e^X - I)$.
