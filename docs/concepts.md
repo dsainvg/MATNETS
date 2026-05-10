@@ -89,3 +89,28 @@ as a whole. `maxd_pool` selects the matrix with the highest determinant from a
 window, preserving the structural integrity of the selected "winning" neuron
 activation. `avgd_pool` weights each matrix contribution by its inverse
 determinant.
+
+## Activations
+
+Like pooling, activations in MATNETS can be element-wise or structural.
+
+### `relu`
+
+The standard `relu` activation operates element-wise on every entry of every
+matrix-neuron.
+
+### `relud`
+
+`relud` (Determinant ReLU) is a structural activation. It calculates the
+determinant of each matrix-neuron. If the determinant is positive, the matrix
+is kept as-is. If the determinant is zero or negative, the entire matrix is set
+to zero. This ensures that only matrix-neurons representing "positive" linear
+transformations (or those with preserved orientation) pass through the layer.
+
+### `leaky_relud`
+
+`leaky_relud` is the leaky version of `relud`. If the determinant is positive,
+it behaves like `relud`. If the determinant is zero or negative, instead of
+zeroing the matrix, it scales the entire matrix by a small `negative_slope`.
+This allows a small amount of information (and gradient) to flow even when the
+transformation is not orientation-preserving.

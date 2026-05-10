@@ -33,6 +33,21 @@ params.B: (3, 4, 4)
 
 Weights use Glorot-uniform initialization. Bias starts at zero.
 
+## `matnets.activations`
+
+```python
+from matnets.activations import relu, relud, leaky_relud
+```
+
+Activations can be passed to `dense` or recurrent steps.
+
+- `relu`: Standard element-wise maximum with zero.
+- `relud`: Determinant-based activation. Returns the input matrix if its
+  determinant is positive, otherwise returns a zero matrix of the same shape.
+- `leaky_relud`: Leaky determinant-based activation. Returns the input matrix if
+  its determinant is positive, otherwise returns the input matrix scaled by
+  `negative_slope` (default 0.01).
+
 ## `matnets.dense`
 
 ```python
