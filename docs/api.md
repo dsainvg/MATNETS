@@ -202,3 +202,24 @@ carry, outputs = jax.lax.scan(
 ```
 
 GRU params must contain keys `"z"`, `"r"`, and `"n"`.
+
+## `matnets.utils`
+
+Data preprocessing utilities for MATNETS.
+
+```python
+from matnets.utils import embed_pixels
+import numpy as np
+
+imgs = np.zeros((2, 10, 10, 3))  # (Batch, H, W, Channels)
+windows = embed_pixels(imgs, n=3, spatial_axes=(1, 2), interleave=False)
+# Shape: (2, 10, 10, 3, 3, 3)
+```
+
+`embed_pixels` extracts an `n x n` (or `n` for 1D) local neighborhood around
+each element. The function automatically applies zero padding so the output
+spatial dimensions match the input spatial dimensions, with the new window
+dimensions appended to the end of the shape.
+
+If `interleave=True` (or a tuple of booleans per axis), the order of elements
+along the spatial axes is permuted according to an interleaved block pattern.
