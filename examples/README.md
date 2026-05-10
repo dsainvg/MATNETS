@@ -11,6 +11,7 @@ Run from the repository root with the local virtualenv:
 .\.venv\Scripts\python.exe examples\6_lstm.py
 .\.venv\Scripts\python.exe examples\7_rnn.py
 .\.venv\Scripts\python.exe examples\8_transformer.py
+.\.venv\Scripts\python.exe examples\10_pooling.py
 ```
 
 Each script is intentionally short and includes:
