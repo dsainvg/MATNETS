@@ -1,17 +1,42 @@
-# pypi.yaml
-# Configuration for PyPI publishing (example for GitHub Actions)
-# Adjust as needed for your CI/CD provider and secrets management
-
-name: Publish Python 🐍 distribution 📦 to PyPI
+name: Release 🚀
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
 
 jobs:
-  build-and-publish:
+  check-version:
     runs-on: ubuntu-latest
+    outputs:
+      version_changed: ${{ steps.check.outputs.changed }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Check if pyproject.toml version changed
+        id: check
+        run: |
+          OLD_VERSION=$(git show HEAD~1:pyproject.toml 2>/dev/null | grep '^version = ' || true)
+          NEW_VERSION=$(grep '^version = ' pyproject.toml || true)
+          if [ "$OLD_VERSION" != "$NEW_VERSION" ] && [ -n "$NEW_VERSION" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            VER=$(echo "$NEW_VERSION" | cut -d '"' -f 2)
+            echo "version=$VER" >> $GITHUB_OUTPUT
+            echo "Version changed from '$OLD_VERSION' to '$NEW_VERSION'"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Version did not change."
+          fi
+
+  publish-pypi:
+    needs: check-version
+    if: needs.check-version.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -23,8 +48,62 @@ jobs:
           python -m pip install --upgrade pip
           pip install build
       - name: Build package
-        run: python -m build
+        run: pip install poetry && poetry build
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
+
+  build-docs:
+    needs: check-version
+    if: needs.check-version.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Install docs dependencies
+        run: python -m pip install -e ".[docs]"
+      - name: Build site
+        run: mkdocs build --strict
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy-docs:
+    needs: [check-version, build-docs]
+    if: needs.check-version.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  create-release:
+    needs: check-version
+    if: needs.check-version.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check-version.outputs.version }}
+          name: Release v${{ needs.check-version.outputs.version }}
+          generate_release_notes: true
