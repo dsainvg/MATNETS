@@ -29,9 +29,10 @@ def leaky_relud(x: jax.Array, negative_slope: float = 0.01) -> jax.Array:
 
 def elud(x: jax.Array, alpha: float = 1.0) -> jax.Array:
     """Determinant-gated matrix ELU.
-
+    @param alpha: the scaling factor for the negative branch, as in standard ELU.
     Returns the input matrix if its determinant is positive, otherwise uses the
     matrix exponential branch: alpha * (expm(X) - I).
+    NOTE: the matrix exponential is used SO it is so slow. Use with caution.
     """
     dets = jnp.linalg.det(x)
     n = x.shape[-1]

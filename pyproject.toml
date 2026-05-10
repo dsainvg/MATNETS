@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "matnets"
 version = "2.5.1"
 description = "A small experimental neural network library where neurons are represented as matrices."
-readme = "README.md"
+readme = "docs/index.md"
 requires-python = ">=3.11"
 license = "MIT"
 authors = [
@@ -41,9 +41,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/dsainvg/MATNETS"
-Documentation = "https://github.com/dsainvg/MATNETS/tree/main/docs"
+Homepage = "https://dsainvg.github.io/MATNETS"
+Documentation = "https://dsainvg.github.io/MATNETS/api"
 Issues = "https://github.com/dsainvg/MATNETS/issues"
+Repository = "https://github.com/dsainvg/MATNETS/"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/matnets"]
