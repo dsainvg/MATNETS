@@ -1,61 +1,134 @@
 # Getting Started
 
-## Install Locally
+Welcome to MATNETS! This guide will help you install the library and write your first matrix-neuron neural network.
 
-MATNETS targets Python 3.11+.
+MATNETS is built on top of [JAX](https://github.com/google/jax), providing a fast, differentiable framework for matrix-based operations.
 
-From the repository root:
+---
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e .
-.\.venv\Scripts\python.exe -m pip install pytest
-```
+## 1. Installation
 
-MATNETS uses JAX. It does not depend on TensorFlow or PyTorch.
+MATNETS requires **Python 3.11+**. We recommend setting up a virtual environment before installing.
 
-## First Dense Layer
+=== "Windows (PowerShell)"
 
-```python
+    ```powershell
+    # 1. Create a virtual environment
+    python -m venv .venv
+
+    # 2. Activate the environment (optional but recommended)
+    .\.venv\Scripts\Activate.ps1
+
+    # 3. Install MATNETS in editable mode
+    python -m pip install -e .
+
+    # 4. Install test dependencies (optional)
+    python -m pip install pytest
+    ```
+
+=== "Linux / macOS"
+
+    ```bash
+    # 1. Create a virtual environment
+    python3 -m venv .venv
+
+    # 2. Activate the environment
+    source .venv/bin/activate
+
+    # 3. Install MATNETS in editable mode
+    python -m pip install -e .
+
+    # 4. Install test dependencies (optional)
+    python -m pip install pytest
+    ```
+
+!!! info "No TensorFlow or PyTorch Required"
+    MATNETS strictly uses JAX as its backend for array operations and automatic differentiation. It does not depend on TensorFlow or PyTorch.
+
+---
+
+## 2. Your First Dense Layer
+
+Let's write a simple script to understand how a basic dense layer works in MATNETS.
+
+```python title="first_layer.py"
 import jax
 import jax.numpy as jnp
-
 import matnets as mtn
 
-params = mtn.init(jax.random.key(0), p=2, q=3, n=2)
+# 1. Initialize parameters
+# p=2 (input neurons), q=3 (output neurons), n=2 (matrix dimension)
+key = jax.random.key(0)
+params = mtn.init(key, p=2, q=3, n=2)
+
+# 2. Create input data
+# Shape: (p, n, n) -> 2 matrix-neurons, each 2x2
 x = jnp.ones((2, 2, 2))
 
-# Use determinant-based structural activation
+# 3. Apply the dense layer
+# We use the determinant-based relud activation
 y = mtn.dense(params, x, activation=mtn.activations.relud)
 
-print(y.shape)  # (3, 2, 2)
+# 4. Check the output shape
+print(f"Input shape: {x.shape}")
+print(f"Output shape: {y.shape}") # Expected: (3, 2, 2)
 ```
 
-## Five Hidden Layers
+Run this script:
 
-The runnable class-style example is in `examples/five_hidden_net.py`.
+```bash
+python first_layer.py
+```
 
-```python
+---
+
+## 3. Building a Multi-Layer Network
+
+MATNETS functions are pure JAX functions. You can compose them easily to build deeper networks. Here is an example of a network with five hidden layers, demonstrating how to wrap MATNETS calls in a class structure.
+
+We will use the provided `examples/five_hidden_net.py`.
+
+```python title="Building a Deeper Network"
 import jax
 import jax.numpy as jnp
 
+# Import the class-based model from our examples
 from examples.five_hidden_net import FiveHiddenNet
 
+# Initialize the model
+# input_neurons=3, internal matrices are 2x2
 model = FiveHiddenNet(jax.random.key(42), input_neurons=3, n=2)
+
+# Create some dummy input
 x = jnp.ones((3, 2, 2))
-y = jax.jit(model.forward)(model.params, x)
 
-print(y.shape)  # (1, 2, 2)
+# JIT-compile the forward pass for performance
+# This is a standard JAX pattern!
+fast_forward = jax.jit(model.forward)
+y = fast_forward(model.params, x)
+
+print(f"Deep network output shape: {y.shape}") # Expected: (1, 2, 2)
 ```
 
-Run it:
+To run the full example directly from the repository:
 
-```powershell
-.\.venv\Scripts\python.exe examples\five_hidden_net.py
+```bash
+python examples/five_hidden_net.py
 ```
 
-## Run Tests
+---
 
-```powershell
-.\.venv\Scripts\python.exe -m pytest
+## 4. Running the Test Suite
+
+To ensure everything is installed and functioning correctly on your machine, run the test suite:
+
+```bash
+python -m pytest
 ```
+
+If all tests pass, you are ready to start experimenting with matrix-valued neural networks!
+
+## What's Next?
+
+- Read the [**Concepts**](concepts.md) page to understand the math and JAX integration.
+- Check out the [**API Guide**](api.md) for detailed function documentation.

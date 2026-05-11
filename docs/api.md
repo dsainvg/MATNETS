@@ -1,39 +1,109 @@
 # API Guide
 
-## `matnets.MatrixParams`
+This guide provides a comprehensive reference for the public MATNETS API, categorized by module functionality.
 
-`MatrixParams` stores the weights and bias for matrix primitives:
+---
+
+## Initialization & Parameters
+
+### `MatrixParams`
+
+`MatrixParams` is a custom JAX PyTree used to store the weights and biases for matrix primitives.
 
 ```python
 from matnets import MatrixParams
 ```
 
-Dense parameters use:
+It stores tensors with the following required shapes for a dense layer:
 
-```text
-W: (q, p, n, n)
-B: (q, n, n)
-```
+- **`W`**: `(q, p, n, n)` - Weight matrices mapping `p` inputs to `q` outputs.
+- **`B`**: `(q, n, n)` - Bias matrices for each of the `q` outputs.
 
-`MatrixParams` is registered as a JAX pytree, so it works with `jax.jit`,
-`jax.vmap`, `jax.grad`, and nested dictionaries/lists of parameters.
+Because it is registered as a PyTree, `MatrixParams` works natively with `jax.jit`, `jax.vmap`, `jax.grad`, and tree-map utilities.
 
-## `matnets.init`
+---
+
+### `matnets.init`
+
+Initializes parameters for a dense layer using Glorot-uniform initialization for weights and zeros for biases.
 
 ```python
-params = matnets.init(key, p=2, q=3, n=4)
+import matnets as mtn
+params = mtn.init(key, p=2, q=3, n=4)
 ```
 
-Creates:
+**Arguments:**
 
-```text
-params.W: (3, 2, 4, 4)
-params.B: (3, 4, 4)
+- `key` (jax.random.PRNGKey): The random seed.
+- `p` (int): Number of input matrix-neurons.
+- `q` (int): Number of output matrix-neurons.
+- `n` (int): Dimension of the square matrices.
+
+**Returns:**
+
+- `MatrixParams`: A PyTree containing initialized `W` and `B`.
+
+---
+
+## Core Layers
+
+### `matnets.dense`
+
+The fundamental matrix-neuron layer, computing $\mathbf{Y} = \mathbf{W}\mathbf{X} + \mathbf{B}$ via tensor contraction.
+
+```python
+y = mtn.dense(params, x, activation=None)
 ```
 
-Weights use Glorot-uniform initialization. Bias starts at zero.
+**Arguments:**
 
-## `matnets.activations`
+- `params` (MatrixParams): The weights and biases for the layer.
+- `x` (jax.Array): The input stack of matrix-neurons. Shape must be `(p, n, n)`.
+- `activation` (Callable, optional): An activation function to apply to the output.
+
+**Returns:**
+
+- `jax.Array`: The output stack of matrix-neurons. Shape is `(q, n, n)`.
+
+---
+
+## Convolutions
+
+MATNETS extends matrix-neurons to spatial data via matrix-based convolutions.
+
+=== "1D Convolution"
+
+    ```python
+    from matnets.lax import matrix_conv1d
+
+    y = matrix_conv1d(params, x, stride=1, padding="VALID")
+    ```
+
+    **Expected Shapes:**
+
+    - `params.W`: `(q, p, kernel_size, n, n)`
+    - `params.B`: `(q, n, n)`
+    - `x`: `(seq_len, p, n, n)`
+    - `y`: `(out_seq_len, q, n, n)`
+
+=== "2D Convolution"
+
+    ```python
+    from matnets.lax import matrix_conv2d
+
+    y = matrix_conv2d(params, x, stride=(1, 1), padding="SAME")
+    ```
+
+    **Expected Shapes:**
+
+    - `params.W`: `(q, p, height, width, n, n)`
+    - `params.B`: `(q, n, n)`
+    - `x`: `(h_in, w_in, p, n, n)`
+    - `y`: `(h_out, w_out, q, n, n)`
+
+---
+
+## Activations
 
 ```python
 from matnets.activations import (
@@ -41,209 +111,134 @@ from matnets.activations import (
 )
 ```
 
-### ReLU Family (Branching/Gated)
+### Element-wise Activations
 
-These activations use the determinant of the matrix-neuron as a branching
-condition.
+These apply a standard scalar function to every element of the matrix independently:
 
 - **`relu(x)`**: Standard element-wise maximum with zero.
-- **`relud(x)`**: Determinant-gated ReLU. Returns $X$ if $\text{det}(X) > 0$,
-  else $0$.
 - **`leaky_relu(x, negative_slope=0.01)`**: Standard element-wise leaky ReLU.
-- **`leaky_relud(x, negative_slope=0.01)`**: Determinant-gated leaky ReLU.
-  Returns $X$ if $\text{det}(X) > 0$, else `negative_slope * X`.
 - **`elu(x, alpha=1.0)`**: Standard element-wise ELU.
-- **`elud(x, alpha=1.0)`**: Determinant-gated ELU. Returns $X$ if
-  $\text{det}(X) > 0$, else `alpha * (expm(X) - I)`.
 
-## `matnets.dense`
+### Determinant-Gated Activations
 
-```python
-y = matnets.dense(params, x)
-```
+These treat the $n \times n$ matrix as a single geometric unit and gate based on $\det(\mathbf{X})$.
 
-Expected shapes:
+- **`relud(x)`**: Returns $X$ if $\det(X) > 0$, else $0$.
+- **`leaky_relud(x, negative_slope=0.01)`**: Returns $X$ if $\det(X) > 0$, else $\alpha \cdot X$.
+- **`elud(x, alpha=1.0)`**: Returns $X$ if $\det(X) > 0$, else $\alpha(\exp(X) - I)$.
 
-```text
-params.W: (q, p, n, n)
-params.B: (q, n, n)
-x:        (p, n, n)
-y:        (q, n, n)
-```
+---
 
-With activation:
+## Pooling
 
-```python
-from matnets.activations import relud
-y = matnets.dense(params, x, activation=relud)
-```
+Pooling downsamples spatial or sequential dimensions while preserving the matrix-neuron contract.
 
-The core operation is:
+=== "Standard Element-wise Pooling"
 
-```python
-jnp.einsum("qpak,pkc->qac", params.W, x) + params.B
-```
+    Operates identically to traditional pooling but applied independently to each $(i, j)$ matrix entry.
 
-## `matnets.lax.matrix_conv1d`
+    - `max_pool1d` / `max_pool2d`: Spatial maximum.
+    - `avg_pool1d` / `avg_pool2d`: Arithmetic mean.
+    - `sum_pool1d` / `sum_pool2d`: Arithmetic sum.
 
-```python
-from matnets.lax import matrix_conv1d
+=== "Determinant-based Structural Pooling"
 
-y = matrix_conv1d(params, x, stride=1, padding="VALID")
-```
+    Operates on the entire matrix holistically based on its volume-preserving properties.
 
-Expected shapes:
+    - **`maxd_pool1d` / `maxd_pool2d`**: Selects the single matrix in the window with the highest determinant.
+    - **`avgd_pool1d` / `avgd_pool2d`**: Computes $\sum \frac{1}{\det(M)} M$ for all matrices in the window.
 
-```text
-params.W: (q, p, r, n, n)
-params.B: (q, n, n)
-x:        (t, p, n, n)
-y:        (t_out, q, n, n)
-```
+---
 
-`r` is the 1D kernel size.
+## Attention
 
-## `matnets.lax.matrix_conv2d`
+### `matnets.lax.matrix_attention`
 
-```python
-from matnets.lax import matrix_conv2d
-
-y = matrix_conv2d(params, x, stride=(1, 1), padding="SAME")
-```
-
-Expected shapes:
-
-```text
-params.W: (q, p, h, w, n, n)
-params.B: (q, n, n)
-x:        (height, width, p, n, n)
-y:        (height_out, width_out, q, n, n)
-```
-
-## `matnets.conv`
-
-Pooling primitives for downsampling sequential and grid data.
-
-```python
-from matnets.conv import max_pool1d, maxd_pool1d, avg_pool1d, avgd_pool1d
-from matnets.conv import max_pool2d, maxd_pool2d, avg_pool2d, avgd_pool2d
-```
-
-Standard pooling (`max_pool`, `avg_pool`, `sum_pool`) operates on matrix
-elements. Determinant-based pooling selects or weights matrices based on their
-determinant.
-
-### Standard Pooling
-
-- `max_pool1d/2d`: Element-wise maximum within the window.
-- `avg_pool1d/2d`: Standard arithmetic mean of matrices in the window.
-- `sum_pool1d/2d`: Standard sum of matrices in the window.
-
-### Determinant Pooling
-
-- `maxd_pool1d/2d`: Selects the single matrix in the window with the highest
-  determinant.
-- `avgd_pool1d/2d`: Computes $\sum \frac{1}{\text{det}(M)} M$ for all matrices
-  $M$ in the window.
-
-Expected 1D shapes:
-
-```text
-x: (t, p, n, n) or (batch, t, p, n, n)
-y: (t_out, p, n, n) or (batch, t_out, p, n, n)
-```
-
-Expected 2D shapes:
-
-```text
-x: (y, x, p, n, n) or (batch, y, x, p, n, n)
-y: (y_out, x_out, p, n, n) or (batch, y_out, x_out, p, n, n)
-```
-
-## `matnets.lax.matrix_attention`
+Computes attention over a sequence of matrix-valued tokens.
 
 ```python
 from matnets.lax import matrix_attention
 
-out = matrix_attention(None, Q, K, V)
+out = matrix_attention(params, Q, K, V, score_fn=None)
 ```
 
-Expected token shapes:
+**Arguments:**
 
-```text
-Q:   (tokens_q, p, n, n)
-K:   (tokens_k, p, n, n)
-V:   (tokens_k, p, n, n)
-out: (tokens_q, p, n, n)
-```
+- `params` (MatrixParams | None): Optional dense projection parameters applied to the final aggregated context vectors.
+- `Q` (jax.Array): Query tokens, shape `(tokens_q, p, n, n)`.
+- `K` (jax.Array): Key tokens, shape `(tokens_k, p, n, n)`.
+- `V` (jax.Array): Value tokens, shape `(tokens_k, p, n, n)`.
+- `score_fn` (Callable, optional): A function returning a scalar given a Query and Key matrix. Defaults to a scaled Frobenius inner product.
 
-By default the score is a scaled Frobenius inner product. You can pass a custom
-`score_fn` that receives one query token and one key token and returns a scalar.
+---
 
-If `params` is not `None`, each aggregated output token is projected through
-`matnets.dense(params, token)`.
+## Recurrent Networks
 
-## `matnets.nn`
-
-`matnets.nn` contains recurrent wiring patterns built from `dense`.
-
-```python
-from matnets.nn import rnn_step, lstm_step, gru_step
-```
-
-These functions are intended to be used with `jax.lax.scan`.
+MATNETS recurrent cells are designed to be used natively with `jax.lax.scan`. They manage hidden states that are stacks of matrices.
 
 ### RNN
 
 ```python
+from matnets.nn import rnn_step
+
 carry, outputs = jax.lax.scan(
     lambda h, x_t: rnn_step(params, h, x_t),
     h0,
-    sequence,
+    sequence
 )
 ```
 
 ### LSTM
 
 ```python
+from matnets.nn import lstm_step
+
+# params must contain specific keys: "i", "f", "g", "o"
 carry, outputs = jax.lax.scan(
     lambda carry, x_t: lstm_step(params, carry, x_t),
     (h0, c0),
-    sequence,
+    sequence
 )
 ```
-
-LSTM params must contain keys `"i"`, `"f"`, `"g"`, and `"o"`.
 
 ### GRU
 
 ```python
+from matnets.nn import gru_step
+
+# params must contain specific keys: "z", "r", "n"
 carry, outputs = jax.lax.scan(
     lambda h, x_t: gru_step(params, h, x_t),
     h0,
-    sequence,
+    sequence
 )
 ```
 
-GRU params must contain keys `"z"`, `"r"`, and `"n"`.
+---
 
-## `matnets.utils`
+## Utilities
 
-Data preprocessing utilities for MATNETS.
+### `matnets.utils.embed_pixels`
+
+A preprocessing utility to convert standard image tensors into overlapping matrix-valued neighborhoods.
 
 ```python
 from matnets.utils import embed_pixels
 import numpy as np
 
-imgs = np.zeros((2, 10, 10, 3))  # (Batch, H, W, Channels)
+# A standard image batch: (Batch, H, W, Channels)
+imgs = np.zeros((2, 10, 10, 3))
+
+# Extract 3x3 local neighborhoods
 windows = embed_pixels(imgs, n=3, spatial_axes=(1, 2), interleave=False)
+
 # Shape: (2, 10, 10, 3, 3, 3)
+# -> (Batch, H, W, Channels, n, n)
 ```
 
-`embed_pixels` extracts an `n x n` (or `n` for 1D) local neighborhood around
-each element. The function automatically applies zero padding so the output
-spatial dimensions match the input spatial dimensions, with the new window
-dimensions appended to the end of the shape.
+**Arguments:**
 
-If `interleave=True` (or a tuple of booleans per axis), the order of elements
-along the spatial axes is permuted according to an interleaved block pattern.
+- `imgs` (np.ndarray | jax.Array): The input image tensor.
+- `n` (int): The window size (will become the $n \times n$ matrix dimensions).
+- `spatial_axes` (tuple): The axes corresponding to height and width.
+- `interleave` (bool | tuple): If true, permutes the order of elements along the spatial axes.

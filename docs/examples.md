@@ -1,71 +1,109 @@
 # Examples
 
-## Basic Forward Pass
+The `examples/` directory in the repository contains several runnable scripts demonstrating how to build and train models with MATNETS.
 
-```powershell
-.\.venv\Scripts\python.exe examples\basic_forward.py
+---
+
+## 1. Basic Forward Pass
+
+Demonstrates the absolute minimum code required to initialize and run a single matrix-neuron layer.
+
+```bash
+python examples/basic_forward.py
 ```
 
-This creates one dense layer and applies it to an input shaped `(2, 2, 2)`.
+**Key Takeaways:**
 
-## Five Hidden Layers
+- Initializes parameters using `mtn.init()`.
+- Constructs a dummy input of shape `(2, 2, 2)`.
+- Runs `mtn.dense()` and verifies the output shape.
 
-```powershell
-.\.venv\Scripts\python.exe examples\five_hidden_net.py
+---
+
+## 2. Five Hidden Layers
+
+Shows how to encapsulate MATNETS operations inside a Python class, similar to how one might structure a PyTorch `nn.Module` or Flax `nn.Module`.
+
+```bash
+python examples/five_hidden_net.py
 ```
 
-This example defines a small class:
+**What it demonstrates:**
 
-```python
-model = FiveHiddenNet(key, input_neurons=3, hidden_neurons=4, n=2)
-y = jax.jit(model.forward)(model.params, x)
+- Iterating through multiple layers, updating the feature map `x`.
+- Managing a list of `MatrixParams` objects.
+- JIT-compiling the entire class method `jax.jit(model.forward)`.
+
+---
+
+## 3. Architecture Walkthrough
+
+A comprehensive testbed script that verifies shape propagation through various advanced architectural patterns.
+
+```bash
+python examples/matrix_architectures.py
 ```
 
-The output shape is `(1, 2, 2)`.
+**Architectures tested:**
 
-## Architecture Walkthrough
+- Standard multi-layer perceptrons (MLP).
+- Batched execution using `jax.vmap`.
+- Gradient computation using `jax.grad`.
+- Recurrent sequence processing with `jax.lax.scan` (both simple RNN and LSTM).
+- Scaled Frobenius Matrix Attention.
+- Residual (skip) connections.
 
-```powershell
-.\.venv\Scripts\python.exe examples\matrix_architectures.py
+---
+
+## 4. Pooling and Convolutions
+
+Demonstrates how to process sequential (or spatial) data using structural pooling.
+
+```bash
+python examples/10_pooling.py
 ```
 
-This file checks shape flow through:
+**What it demonstrates:**
 
-- MLP
-- batched MLP with `jax.vmap`
-- gradients with `jax.grad`
-- RNN with `jax.lax.scan`
-- LSTM with `jax.lax.scan`
-- Frobenius attention
-- residual block
+- Downsampling sequences using `maxd_pool1d` (picking the highest determinant) and `avgd_pool1d` (inverse-determinant weighted sum).
+- Integrating MATNETS convolutions (`matrix_conv1d`) with pooling inside a standard sequential model.
 
-## Pooling and CNNs
+---
 
-```powershell
-.\.venv\Scripts\python.exe examples\10_pooling.py
+## 5. Structural Activations
+
+Contrasts standard element-wise activations with MATNETS' unique determinant-gated activations.
+
+```bash
+python examples/11_activations.py
 ```
 
-Demonstrates downsampling a 1D sequence using `maxd_pool1d` and `avgd_pool1d`.
-Shows how pooling integrates into a standard Flax model with matrix
-convolutions.
+**What it demonstrates:**
 
-## Activations
+- Applying `relu` (element-wise) vs. `relud` (determinant-gated).
+- Applying `elu` (element-wise) vs. `elud` (determinant-gated matrix exponential).
+- How gating preserves or filters entire matrix-neurons based on orientation.
 
-```powershell
-.\.venv\Scripts\python.exe examples\11_activations.py
+---
+
+## Integrating with JAX Ecosystem
+
+MATNETS relies heavily on standard JAX functions for parallelization and optimization.
+
+```python title="JAX Integration Examples"
+# 1. Compilation
+# JIT compile the dense kernel for speed
+fast_dense = jax.jit(mtn.dense)
+
+# 2. Batching
+# Map the dense operation over a batch dimension (axis 0 of inputs)
+batched_dense = jax.vmap(mtn.dense, in_axes=(None, 0))
+
+# 3. Gradients
+# Compute gradients of a loss function with respect to MatrixParams
+grads = jax.grad(loss_fn)(params, x, y_true)
+
+# 4. Recurrence
+# Loop an RNN step over a time sequence
+carry, outputs = jax.lax.scan(rnn_step, initial_state, sequence)
 ```
-
-Contrasts element-wise `relu` with structural `relud` and `elud`, showing how
-determinant-gating preserves or filters entire matrix-neurons.
-
-## Where Parallelization Happens
-
-The dense operation:
-
-```python
-jnp.einsum("qpak,pkc->qac", W, x)
-```
-
-is the main kernel. JAX can compile it with `jit`, map it over batches or token
-sequences with `vmap`, differentiate it with `grad`, and call it repeatedly
-inside `lax.scan`.

@@ -1,36 +1,57 @@
 # Concepts
 
-## Matrix-Neurons
+This guide details the mathematical and structural concepts that differentiate MATNETS from standard neural network libraries.
 
-A traditional dense layer usually maps vectors:
+---
 
-```text
-x: (p)
-W: (q, p)
-y: (q)
+## 1. Matrix-Neurons
+
+In a traditional dense layer, inputs and outputs are vectors of scalars, and weights form a 2D matrix. The transformation is defined as $\mathbf{y} = \mathbf{W}\mathbf{x} + \mathbf{b}$.
+
+```text title="Traditional Neural Network Shapes"
+x: (p)          # p input scalars
+W: (q, p)       # mapping p inputs to q outputs
+y: (q)          # q output scalars
 ```
 
-MATNETS maps stacks of square matrices:
+In MATNETS, the fundamental unit of activation is an $n \times n$ matrix. A layer maps a stack of $p$ input matrix-neurons to a stack of $q$ output matrix-neurons.
 
-```text
-x: (p, n, n)
-W: (q, p, n, n)
-B: (q, n, n)
-y: (q, n, n)
+```text title="MATNETS Shapes"
+x: (p, n, n)    # p input matrix-neurons
+W: (q, p, n, n) # mapping p inputs to q outputs
+B: (q, n, n)    # bias is a full matrix per output neuron
+y: (q, n, n)    # q output matrix-neurons
 ```
 
-`p` is the input neuron count. `q` is the output neuron count. `n` is the
-matrix size inside each neuron.
+Where:
 
-## Dense Primitive
+- $p$: The number of input neurons.
+- $q$: The number of output neurons.
+- $n$: The spatial dimension of the square matrix carried by each neuron.
 
-The core operation is:
+---
+
+## 2. The Dense Primitive
+
+The core operation of a MATNETS dense layer is not a simple matrix multiplication, but a tensor contraction defined by the following Einstein summation:
 
 ```python
 jnp.einsum("qpak,pkc->qac", W, x) + B
 ```
 
-Under the square-matrix contract:
+Mathematically, for the $j$-th output neuron ($1 \leq j \leq q$), the output matrix $\mathbf{Y}_j \in \mathbb{R}^{n \times n}$ is computed as:
+
+$$
+\mathbf{Y}_j = \sum_{i=1}^{p} \mathbf{W}_{ji} \mathbf{X}_i + \mathbf{B}_j
+$$
+
+Where:
+
+- $\mathbf{X}_i \in \mathbb{R}^{n \times n}$ is the $i$-th input matrix-neuron.
+- $\mathbf{W}_{ji} \in \mathbb{R}^{n \times n}$ is the weight matrix connecting input $i$ to output $j$.
+- $\mathbf{B}_j \in \mathbb{R}^{n \times n}$ is the complete matrix bias for output neuron $j$.
+
+Under the square-matrix contract, the inner dimensions contract cleanly:
 
 ```text
 a == n
@@ -38,77 +59,99 @@ k == n
 c == n
 ```
 
-so the output is always `(q, n, n)`.
+Ensuring the output is always shaped `(q, n, n)`.
 
-## Bias
+---
 
-The bias is a full matrix:
+## 3. Structural Pooling
 
-```text
-B: (q, n, n)
-```
+Standard pooling operations (like max-pooling or average-pooling) typically operate on scalar elements independently. MATNETS introduces **structural pooling**, which treats the entire $n \times n$ matrix as a single entity, often using the matrix determinant to evaluate its magnitude or volume-preserving properties.
 
-Each output matrix-neuron gets its own complete matrix bias.
+### Determinant Max Pooling (`maxd_pool`)
 
-## JAX Transforms
+Instead of finding the element-wise maximum across a spatial window, `maxd_pool` evaluates the determinant of every matrix in the window and selects the single matrix with the highest determinant. This preserves the internal structure (and thus the geometric transformation) of the "winning" neuron.
 
-MATNETS functions are ordinary JAX functions. You can transform them with:
+$$
+\mathbf{Y} = \mathbf{X}_{k^*} \quad \text{where} \quad k^* = \arg\max_{k \in \text{window}} \det(\mathbf{X}_k)
+$$
 
-```python
-jax.jit(forward)
-jax.vmap(forward, in_axes=(None, 0))
-jax.grad(loss)
-jax.lax.scan(step, carry, sequence)
-```
+### Determinant Average Pooling (`avgd_pool`)
 
-The main parallel work is the dense einsum. `vmap` adds batch or token axes
-around it. `scan` handles recurrence over time while each step still uses
-compiled dense contractions.
+`avgd_pool` computes a weighted sum of the matrices in the window, where the weights are derived from the inverse determinant, prioritizing matrices that represent transformations with smaller volume expansion.
 
-## Recurrent State
+$$
+\mathbf{Y} = \sum_{k \in \text{window}} \frac{1}{|\det(\mathbf{X}_k)| + \epsilon} \mathbf{X}_k
+$$
 
-RNN, LSTM, and GRU hidden states are stacks of matrices:
+*(Note: Exact implementations may vary slightly to handle numerical stability and zero determinants).*
+
+---
+
+## 4. Activations
+
+Activations in MATNETS can be categorized into two types: standard element-wise functions and determinant-based gated functions.
+
+### Element-wise Activations
+
+Standard activations like `relu`, `leaky_relu`, and `elu` can be applied directly. The scalar function $f(z)$ is applied to every entry $x_{ij}$ in the matrix independently:
+
+$$
+\mathbf{Y}_{ij} = f(\mathbf{X}_{ij})
+$$
+
+### Determinant-based Matrix Activations (Gated)
+
+To fully leverage the matrix structure, MATNETS provides activations that gate the entire matrix based on its determinant, ensuring the layer only passes transformations that meet specific geometric criteria (e.g., orientation preservation).
+
+- **`relud`**: Determinant-gated ReLU. It passes the matrix unchanged if its determinant is positive, otherwise it zeros out the entire matrix.
+
+$$
+  \text{relud}(\mathbf{X}) = \begin{cases}
+  \mathbf{X} & \text{if } \det(\mathbf{X}) > 0 \\
+  \mathbf{0} & \text{otherwise}
+  \end{cases}
+$$
+
+- **`leaky_relud`**: Similar to `relud`, but scales the matrix by a small scalar $\alpha$ when the determinant is non-positive, preventing dead neurons while still heavily penalizing orientation-reversing transformations.
+
+$$
+  \text{leaky\_relud}(\mathbf{X}) = \begin{cases}
+  \mathbf{X} & \text{if } \det(\mathbf{X}) > 0 \\
+  \alpha \mathbf{X} & \text{otherwise}
+  \end{cases}
+$$
+
+- **`elud`**: A continuous alternative that applies the matrix exponential branch when the determinant is non-positive.
+
+$$
+  \text{elud}(\mathbf{X}) = \begin{cases}
+  \mathbf{X} & \text{if } \det(\mathbf{X}) > 0 \\
+  \alpha (\exp(\mathbf{X}) - \mathbf{I}) & \text{otherwise}
+  \end{cases}
+$$
+
+---
+
+## 5. Recurrent Architectures
+
+In MATNETS, hidden states for Recurrent Neural Networks (RNNs), LSTMs, and GRUs are not vectors of scalars, but stacks of matrices.
 
 ```text
 H: (hidden_neurons, n, n)
 C: (hidden_neurons, n, n)
 ```
 
-Gates are also matrix-valued, so an LSTM forget gate has one value per matrix
-entry, not just one scalar per neuron.
+Consequently, the gates in an LSTM (input, forget, output, etc.) are also matrix-valued. This means a forget gate has an independent scalar value for every entry in the $n \times n$ matrix, allowing the network to selectively forget specific components of the learned transformation, rather than scaling the entire neuron uniformly.
 
-## Pooling
+---
 
-Pooling in MATNETS can be element-wise (standard) or structural
-(determinant-based).
+## 6. JAX Transforms Compatibility
 
-### Structural Pooling
+A key design principle of MATNETS is full compatibility with JAX's functional transformations. The dense einsum operation is the main parallel kernel.
 
-Instead of comparing every scalar entry, structural pooling looks at the matrix
-as a whole. `maxd_pool` selects the matrix with the highest determinant from a
-window, preserving the structural integrity of the selected "winning" neuron
-activation. `avgd_pool` weights each matrix contribution by its inverse
-determinant.
-
-## Activations
-
-Like pooling, activations in MATNETS can be element-wise or structural.
-
-### Element-wise Activations
-
-Standard activations like `relu`, `leaky_relu`, and `elu` can be applied to
-matrix-valued neurons. In this case, the scalar function is applied to every
-entry in the $n \times n$ matrix independently.
-
-### Determinant-based Matrix Activations (Gated)
-
-MATNETS introduces structural activations that treat the $n \times n$ neuron as
-a single unit by gating or branching based on its determinant.
-
-- **`relud`**: Returns the input matrix if its determinant is positive,
-  otherwise zeros it out. This ensures only orientations-preserving
-  transformations pass.
-- **`leaky_relud`**: Similar to `relud`, but scales the matrix by a small
-  $\alpha$ if the determinant is non-positive, allowing some gradient flow.
-- **`elud`**: Returns the input matrix if the determinant is positive, else
-  applies the matrix-exponential branch $\alpha(e^X - I)$.
+| JAX Transform | MATNETS Usage |
+| :--- | :--- |
+| `jax.jit` | Compiles the `mtn.dense` or custom forward pass into highly optimized XLA code. |
+| `jax.vmap` | Adds batch dimensions `(batch, p, n, n)` or token dimensions without rewriting the core equations. |
+| `jax.grad` | Computes gradients through the matrix contractions for training. |
+| `jax.lax.scan` | Efficiently loops over sequences for RNNs, managing the matrix-valued hidden states. |
