@@ -79,7 +79,21 @@ extra_javascript:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
-  - Concepts: concepts.md
-  - API Guide: api.md
+  - Concepts:
+    - Matrix-Neurons: concepts/matrix-neurons.md
+    - The Dense Primitive: concepts/dense-primitive.md
+    - Structural Pooling: concepts/structural-pooling.md
+    - Activations: concepts/activations.md
+    - Recurrent Architectures: concepts/recurrent.md
+    - JAX Transforms Compatibility: concepts/jax-compatibility.md
+  - API Guide:
+    - Initialization & Parameters: api/initialization.md
+    - Core Layers: api/core-layers.md
+    - Convolutions: api/convolutions.md
+    - Activations: api/activations.md
+    - Pooling: api/pooling.md
+    - Attention: api/attention.md
+    - Recurrent Networks: api/recurrent.md
+    - Utilities: api/utilities.md
   - Examples: examples.md
   - Development: development.md

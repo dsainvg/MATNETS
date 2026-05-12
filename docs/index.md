@@ -76,7 +76,7 @@ print(y.shape) # Output: (3, 2, 2)
 ## Read Next
 
 - [**Getting Started**](getting-started.md): Detailed installation instructions and introductory tutorials.
-- [**Concepts**](concepts.md): Deep dive into matrix-neuron mathematics, shapes, and JAX compatibility.
-- [**API Guide**](api.md): Comprehensive reference for all public functions and classes.
+- [**Concepts**](concepts/matrix-neurons.md): Deep dive into matrix-neuron mathematics, shapes, and JAX compatibility.
+- [**API Guide**](api/core-layers.md): Detailed reference for initialization, layers, activations, and recurrent structures.
 - [**Examples**](examples.md): Explore runnable example scripts demonstrating different architectures.
 - [**Development**](development.md): Guide for contributing, running tests, and local development.

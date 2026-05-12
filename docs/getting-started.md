@@ -130,5 +130,5 @@ If all tests pass, you are ready to start experimenting with matrix-valued neura
 
 ## What's Next?
 
-- Read the [**Concepts**](concepts.md) page to understand the math and JAX integration.
-- Check out the [**API Guide**](api.md) for detailed function documentation.
+- Read the [**Concepts**](concepts/matrix-neurons.md) page to understand the math and JAX integration.
+- Check the [**API Guide**](api/core-layers.md) for full module documentation.
