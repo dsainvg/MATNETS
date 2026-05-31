@@ -65,12 +65,13 @@ def embed_pixels(
 
     padded = np.pad(imgs, pad_width, mode="constant")
     window_shape = (n,) * len(spatial_axes)
-
-    windows = sliding_window_view(padded, window_shape, axis=spatial_axes)  # type: ignore[call-overload]
+    windows = sliding_window_view(
+        padded, cast(Any, window_shape), axis=cast(Any, spatial_axes)
+    )
 
     for ax, inter in zip(spatial_axes, interleave, strict=False):
         if inter:
             order = _interleaved_axis_order(windows.shape[ax], n)
             windows = np.take(windows, order, axis=ax)
 
-    return cast(npt.NDArray[Any], windows.copy())
+    return windows.copy()
