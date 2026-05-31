@@ -1,5 +1,14 @@
-from matnets.activations.relu import (
+from matnets.activations.exp import (
+    sigmoid,
+    sigmoidd,
+    softplus,
+    softplusd,
+    tanh,
+    tanhd,
+)
+from matnets.activations.gated import (
     elu,
+    elu_powered,
     elud,
     leaky_relu,
     leaky_relud,
@@ -9,9 +18,16 @@ from matnets.activations.relu import (
 
 __all__ = [
     "elu",
+    "elu_powered",
     "elud",
     "leaky_relu",
     "leaky_relud",
     "relu",
     "relud",
+    "sigmoid",
+    "sigmoidd",
+    "softplus",
+    "softplusd",
+    "tanh",
+    "tanhd",
 ]

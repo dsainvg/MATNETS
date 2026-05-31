@@ -13,3 +13,4 @@ site/
 .coverage
 htmlcov/
 runs/
+.antigravitycli/

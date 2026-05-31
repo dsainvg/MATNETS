@@ -37,24 +37,41 @@ Weights use Glorot-uniform initialization. Bias starts at zero.
 
 ```python
 from matnets.activations import (
-    relu, relud, leaky_relu, leaky_relud, elu, elud
+    relu, relud, leaky_relu, leaky_relud,
+    elu, elu_powered, elud,
+    sigmoid, sigmoidd,
+    tanh, tanhd,
+    softplus, softplusd
 )
 ```
 
-### ReLU Family (Branching/Gated)
+### Standard and Determinant-Gated/Scaled Activations
 
-These activations use the determinant of the matrix-neuron as a branching
-condition.
+MATNETS supports standard element-wise activations and determinant-based structural activations (either gated by sign or scaled by $1/n$-th root determinant, where $n$ is the matrix dimension).
 
-- **`relu(x)`**: Standard element-wise maximum with zero.
-- **`relud(x)`**: Determinant-gated ReLU. Returns $X$ if $\text{det}(X) > 0$,
-  else $0$.
+#### Element-Wise Activations (Standard)
+
+- **`relu(x)`**: Standard element-wise ReLU.
 - **`leaky_relu(x, negative_slope=0.01)`**: Standard element-wise leaky ReLU.
-- **`leaky_relud(x, negative_slope=0.01)`**: Determinant-gated leaky ReLU.
-  Returns $X$ if $\text{det}(X) > 0$, else `negative_slope * X`.
 - **`elu(x, alpha=1.0)`**: Standard element-wise ELU.
-- **`elud(x, alpha=1.0)`**: Determinant-gated ELU. Returns $X$ if
-  $\text{det}(X) > 0$, else `alpha * (expm(X) - I)`.
+- **`sigmoid(x)`**: Standard element-wise sigmoid.
+- **`tanh(x)`**: Standard element-wise tanh.
+- **`softplus(x)`**: Standard element-wise softplus.
+
+#### Determinant-Gated Activations (Branching)
+
+- **`relud(x)`**: Determinant-gated ReLU. Returns $X$ if $\text{det}(X) > 0$, else $0$.
+- **`leaky_relud(x, negative_slope=0.01)`**: Determinant-gated leaky ReLU. Returns $X$ if $\text{det}(X) > 0$, else `negative_slope * X`.
+- **`elu_powered(x, alpha=1.0)`**: Determinant-gated ELU (matrix exponential). Returns $X$ if $\text{det}(X) > 0$, else `alpha * (expm(X) - I)`.
+
+#### Determinant-Scaled Activations (Smooth Scaling)
+
+These functions scale the input matrix by $\text{fn}(\text{det}(X)^{1/n}) / \text{det}(X)^{1/n}$, using the $1/n$-th root of the determinant for dimension-normalized stability (with small-epsilon clamping on $\text{det}(X)$ for numerical safety):
+
+- **`elud(x, alpha=1.0)`**: Scales by $\text{elu}(\text{det}(X)^{1/n}, \alpha) / \text{det}(X)^{1/n}$.
+- **`sigmoidd(x)`**: Scales by $\text{sigmoid}(\text{det}(X)^{1/n}) / \text{det}(X)^{1/n}$.
+- **`tanhd(x)`**: Scales by $\text{tanh}(\text{det}(X)^{1/n}) / \text{det}(X)^{1/n}$.
+- **`softplusd(x)`**: Scales by $\text{softplus}(\text{det}(X)^{1/n}) / \text{det}(X)^{1/n}$.
 
 ## `matnets.dense`
 
@@ -141,10 +158,8 @@ determinant.
 
 ### Determinant Pooling
 
-- `maxd_pool1d/2d`: Selects the single matrix in the window with the highest
-  determinant.
-- `avgd_pool1d/2d`: Computes $\sum \frac{1}{\text{det}(M)} M$ for all matrices
-  $M$ in the window.
+- `maxd_pool1d/2d`: Selects the single matrix in the window with the highest determinant.
+- `avgd_pool1d/2d`: Computes $\sum \frac{1}{\text{det}(M)^{1/n}} M$ for all matrices $M$ in the window, where $n$ is the matrix dimension.
 
 Expected 1D shapes:
 

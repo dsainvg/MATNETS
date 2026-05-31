@@ -1,7 +1,7 @@
 import jax
 import jax.numpy as jnp
 import matnets as mtn
-from matnets.activations import relu, relud, elud
+from matnets.activations import relu, relud, elud, elu_powered
 
 def main():
     # Setup some test matrices
@@ -29,10 +29,15 @@ def main():
     print("Zeros out the whole matrix if det <= 0.")
     print(relud(x))
 
-    # 3. Determinant-gated ELU (elud)
-    print("\n--- Determinant-gated ELU (elud) ---")
-    print("Branches to alpha * (expm(X) - I) if det <= 0.")
+    # 3. Determinant-scaled ELU (elud)
+    print("\n--- Determinant-scaled ELU (elud) ---")
+    print("Scales the matrix by elu(det(X)^(1/n)) / det(X)^(1/n).")
     print(elud(x))
+
+    # 4. Determinant-gated ELU (elu_powered)
+    print("\n--- Determinant-gated ELU (elu_powered) ---")
+    print("Branches to alpha * (expm(X) - I) if det <= 0.")
+    print(elu_powered(x))
 
     # Usage in a dense layer
     print("\n--- Usage in a Dense Layer ---")

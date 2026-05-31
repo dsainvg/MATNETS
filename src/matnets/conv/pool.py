@@ -8,6 +8,7 @@ import jax
 import jax.numpy as jnp
 from jax import Array
 
+from matnets.__utils import _safe_det_root
 from matnets.lax.conv import Padding, _positive_stride, _same_padding
 
 
@@ -487,7 +488,8 @@ def avgd_pool1d(
 
     windows = jax.vmap(get_window)(jnp.arange(t_out))
     dets = jnp.linalg.det(windows)
-    weighted = windows / dets[..., None, None]
+    root = _safe_det_root(dets, x.shape[-1])
+    weighted = windows / root[..., None, None]
     return jnp.sum(weighted, axis=1)
 
 
@@ -550,5 +552,6 @@ def avgd_pool2d(
 
     windows_flat = windows.reshape((y_out, x_out, wy * wx, p, n, n))
     dets = jnp.linalg.det(windows_flat)
-    weighted = windows_flat / dets[..., None, None]
+    root = _safe_det_root(dets, x.shape[-1])
+    weighted = windows_flat / root[..., None, None]
     return jnp.sum(weighted, axis=2)
