@@ -4,6 +4,7 @@ import pytest
 from matnets.conv import (
     avg_pool1d,
     avgd_pool1d,
+    avgd_pool2d,
     max_pool1d,
     max_pool2d,
     sum_pool1d,
@@ -22,7 +23,23 @@ def test_avgd_pool1d_slides_window() -> None:
     x = jnp.array([[[[1.0, 0.0], [0.0, 1.0]]], [[[2.0, 0.0], [0.0, 2.0]]]])
     out = avgd_pool1d(x, window_size=2)
     assert out.shape == (1, 1, 2, 2)
-    assert jnp.allclose(out[0, 0], jnp.array([[1.5, 0.0], [0.0, 1.5]]))
+    # Under 1/det^(1/n) scaling:
+    # M1 = I, det = 1, root = 1, weighted M1 = I
+    # M2 = 2I, det = 4, root = 2, weighted M2 = I
+    # Sum = 2I
+    assert jnp.allclose(out[0, 0], jnp.array([[2.0, 0.0], [0.0, 2.0]]))
+
+
+def test_avgd_pool2d_slides_window() -> None:
+    # 2D inputs of shape (y, x, p, n, n)
+    x = jnp.array([
+        [[[[1.0, 0.0], [0.0, 1.0]]]],
+        [[[[2.0, 0.0], [0.0, 2.0]]]],
+    ]) # Shape: (2, 1, 1, 2, 2)
+    out = avgd_pool2d(x, window_size=(2, 1))
+    assert out.shape == (1, 1, 1, 2, 2)
+    # Sum = 2I
+    assert jnp.allclose(out[0, 0, 0], jnp.array([[2.0, 0.0], [0.0, 2.0]]))
 
 
 def test_max_pool1d_slides_window() -> None:
