@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "matnets"
-version = "3.0.0"
+version = "3.0.1"
 description = "A small experimental neural network library where neurons are represented as matrices."
 readme = "docs/index.md"
 requires-python = ">=3.11"
@@ -12,7 +12,7 @@ license = "MIT"
 authors = [
   { name = "dsainvg" }
 ]
-keywords = ["neural-networks", "matrix", "machine-learning", "jax"]
+keywords = ["neural-networks", "matrix", "machine-learning", "jax", "non-classical-networks"]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
   "Intended Audience :: Developers",
@@ -41,8 +41,8 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://dsainvg.github.io/MATNETS"
-Documentation = "https://dsainvg.github.io/MATNETS/api"
+Homepage = "https://dev.dsainvg.me/MATNETS"
+Documentation = "https://dev.dsainvg.me/MATNETS/api"
 Issues = "https://github.com/dsainvg/MATNETS/issues"
 Repository = "https://github.com/dsainvg/MATNETS/"
 
