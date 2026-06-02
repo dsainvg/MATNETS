@@ -331,6 +331,26 @@ def test_lstm_step_returns_hidden_and_cell_matrices() -> None:
     assert output.shape == (1, 1, 1)
 
 
+def test_lstm_step_with_custom_activations() -> None:
+    from matnets.activations import sss, sst
+    params = {
+        gate: MatrixParams(
+            W=jnp.ones((1, 2, 2, 2)),
+            B=jnp.zeros((1, 2, 2)),
+        )
+        for gate in ("i", "f", "g", "o")
+    }
+    h0 = jnp.ones((1, 2, 2))
+    c0 = jnp.ones((1, 2, 2))
+    x = jnp.ones((1, 2, 2))
+
+    (next_h, next_c), output = lstm_step(params, (h0, c0), x, activations=(sss, sst))
+
+    assert next_h.shape == (1, 2, 2)
+    assert next_c.shape == (1, 2, 2)
+    assert output.shape == (1, 2, 2)
+
+
 def test_gru_step_returns_matrix_state() -> None:
     params = {
         gate: MatrixParams(

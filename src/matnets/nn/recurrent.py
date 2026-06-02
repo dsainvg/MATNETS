@@ -30,17 +30,26 @@ def lstm_step(
     params: Mapping[str, MatrixParams],
     carry: tuple[Array, Array],
     x: Array,
+    *,
+    activations: tuple[Callable[[Array], Array], Callable[[Array], Array]] = (
+        jax.nn.sigmoid,
+        jnp.tanh,
+    ),
 ) -> tuple[tuple[Array, Array], Array]:
     """LSTM step using ``i``, ``f``, ``g``, and ``o`` dense gate params."""
 
     h, c = carry
+    gate_act, state_act = activations
     combined = jnp.concatenate([h, x], axis=0)
-    i = dense(params["i"], combined, jax.nn.sigmoid)
-    f = dense(params["f"], combined, jax.nn.sigmoid)
-    g = dense(params["g"], combined, jnp.tanh)
-    o = dense(params["o"], combined, jax.nn.sigmoid)
-    next_c = f * c + i * g
-    next_h = o * jnp.tanh(next_c)
+
+    i = dense(params["i"], combined, gate_act)
+    f = dense(params["f"], combined, gate_act)
+    g = dense(params["g"], combined, state_act)
+    o = dense(params["o"], combined, gate_act)
+
+    next_c = jnp.matmul(f, c) + jnp.matmul(i, g)
+    next_h = jnp.matmul(o, state_act(next_c))
+
     return (next_h, next_c), next_h
 
 
