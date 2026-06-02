@@ -124,4 +124,4 @@ def embed_sequence(
     idx = np.abs(np.arange(n)[:, None] - np.arange(n)[None, :])
 
     # Take elements to form the n x n matrix representation
-    return np.take(windows, idx, axis=-1)
+    return cast(npt.NDArray[Any], np.take(windows, idx, axis=-1))
