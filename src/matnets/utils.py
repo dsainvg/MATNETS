@@ -84,13 +84,11 @@ def embed_sequence(
 ) -> npt.NDArray[Any]:
     """Extract a symmetric time-history embedding over a time sequence.
 
-    For every time step `t` along the target sequence `axis`, this extracts 
-    history `n` steps backward and creates an `n x n` symmetric matrix where the 
-    distance from the diagonal corresponds to the time delay. Values prior to the 
+    For every time step `t` along the target sequence `axis`, this extracts
+    history `n` steps backward and creates an `n x n` symmetric matrix where the
+    distance from the diagonal corresponds to the time delay. Values prior to the
     first time step are zero-padded.
 
-    This function natively supports multi-dimensional arrays, meaning it will
-    seamlessly work with 1D, 2D, and 3D inputs without altering other axes (like channels).
 
     Args:
         seq: Input array containing a sequence (e.g., shape `(..., T, ...)`).
@@ -104,7 +102,7 @@ def embed_sequence(
         - 1D `(T,)` with `axis=0`      => `(T, n, n)`
         - 2D `(N, T)` with `axis=1`    => `(N, T, n, n)`
         - 3D `(N, T, C)` with `axis=1` => `(N, T, C, n, n)`
-        
+
     """
     seq = np.asarray(seq)
 
@@ -115,17 +113,15 @@ def embed_sequence(
     pad_width = [(0, 0)] * seq.ndim
     pad_width[axis] = (n - 1, 0)
     padded = np.pad(seq, pad_width, mode="constant")
-    
+
     # Extract the sliding window of size n
     windows = sliding_window_view(padded, window_shape=n, axis=axis)
-    
+
     # Reverse the window so that the newest time step is at index 0 (delay = 0)
     windows = windows[..., ::-1]
-    
+
     # Form the index matrix: absolute difference representing delay
     idx = np.abs(np.arange(n)[:, None] - np.arange(n)[None, :])
-    
+
     # Take elements to form the n x n matrix representation
     return np.take(windows, idx, axis=-1)
-
-
