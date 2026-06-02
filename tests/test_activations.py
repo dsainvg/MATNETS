@@ -9,6 +9,7 @@ from matnets.activations import (
     relud,
     sigmoidd,
     softplusd,
+    sst,
     tanhd,
 )
 
@@ -80,3 +81,13 @@ def test_softplusd_scaling() -> None:
     # expected scale: softplus(4.0) / 4.0
     expected_scale = jax_softplus(4.0) / 4.0
     assert jnp.allclose(out, x * expected_scale)
+
+
+def test_sst_scaling() -> None:
+    x = jnp.array([[1.0, 2.0], [3.0, 4.0]])
+    out = sst(x)
+    n = 2
+    t = jnp.tanh(x)
+    s = jnp.matmul(t, t)
+    expected = s * (float(n) ** -2)
+    assert jnp.allclose(out, expected)

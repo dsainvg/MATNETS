@@ -1,8 +1,9 @@
 # Changelog
 
-## 2.6.0
+## 3.2.0
 
 - Added three new determinant-scaled activation functions: `sigmoidd`, `tanhd`, and `softplusd`.
+- Added `sst` (scaled squared tanh) activation function.
 - Renamed the old matrix-exponential determinant-gated ELU to `elu_powered` due to its high computational cost.
 - Re-implemented `elud` to use the more efficient and smooth `elu(det(X)^(1/n)) / det(X)^(1/n)` scaling pattern.
 - Updated `avgd_pool1d` and `avgd_pool2d` to use `det(M)^(1/n)` scaling instead of raw `det(M)` for dimension-normalized stability.

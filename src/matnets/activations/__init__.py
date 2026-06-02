@@ -3,6 +3,7 @@ from matnets.activations.exp import (
     sigmoidd,
     softplus,
     softplusd,
+    sst,
     tanh,
     tanhd,
 )
@@ -28,6 +29,7 @@ __all__ = [
     "sigmoidd",
     "softplus",
     "softplusd",
+    "sst",
     "tanh",
     "tanhd",
 ]
