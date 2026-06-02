@@ -54,7 +54,7 @@ def sst(x: jax.Array) -> jax.Array:
     n = x.shape[-1]
     t = jnp.tanh(x)
     s = jnp.matmul(t, t)
-    scale = float(n) ** -2
+    scale = float(n) ** -1
     return s * scale
 
 
@@ -67,5 +67,5 @@ def sss(x: jax.Array) -> jax.Array:
     n = x.shape[-1]
     t = jnn.sigmoid(x)
     s = jnp.matmul(t, t)
-    scale = float(n) ** -2
+    scale = float(n) ** -1
     return s * scale
