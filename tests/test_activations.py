@@ -90,7 +90,7 @@ def test_sst_scaling() -> None:
     n = 2
     t = jnp.tanh(x)
     s = jnp.matmul(t, t)
-    expected = s * (float(n) ** -2)
+    expected = s * (float(n) ** -1)
     assert jnp.allclose(out, expected)
 
 
@@ -100,5 +100,5 @@ def test_sss_scaling() -> None:
     n = 2
     t = jax_sigmoid(x)
     s = jnp.matmul(t, t)
-    expected = s * (float(n) ** -2)
+    expected = s * (float(n) ** -1)
     assert jnp.allclose(out, expected)

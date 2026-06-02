@@ -57,8 +57,8 @@ MATNETS supports standard element-wise activations and determinant-based structu
 - **`sigmoid(x)`**: Standard element-wise sigmoid.
 - **`tanh(x)`**: Standard element-wise tanh.
 - **`softplus(x)`**: Standard element-wise softplus.
-- **`sss(x)`**: Scaled squared sigmoid. Applies element-wise sigmoid, squares the resulting matrices, and scales them by $n^{-2}$.
-- **`sst(x)`**: Scaled squared tanh. Applies element-wise tanh, squares the resulting matrices, and scales them by $n^{-2}$.
+- **`sss(x)`**: Scaled squared sigmoid. Applies element-wise sigmoid, squares the resulting matrices, and scales them by $n^{-1}$.
+- **`sst(x)`**: Scaled squared tanh. Applies element-wise tanh, squares the resulting matrices, and scales them by $n^{-1}$.
 
 #### Determinant-Gated Activations (Branching)
 

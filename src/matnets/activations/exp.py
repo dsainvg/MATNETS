@@ -49,7 +49,7 @@ def sst(x: jax.Array) -> jax.Array:
     """Scaled squared tanh activation.
 
     Applies element-wise tanh, squares the resulting matrices, and
-    scales them by n^-2 where n is the matrix dimension.
+    scales them by n^-1 where n is the matrix dimension.
     """
     n = x.shape[-1]
     t = jnp.tanh(x)
@@ -62,7 +62,7 @@ def sss(x: jax.Array) -> jax.Array:
     """Scaled squared sigmoid activation.
 
     Applies element-wise sigmoid, squares the resulting matrices, and
-    scales them by n^-2 where n is the matrix dimension.
+    scales them by n^-1 where n is the matrix dimension.
     """
     n = x.shape[-1]
     t = jnn.sigmoid(x)
