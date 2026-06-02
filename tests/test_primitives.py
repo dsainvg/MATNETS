@@ -282,6 +282,36 @@ def test_rnn_step_works_inside_scan() -> None:
     assert outputs[:, 0, 0, 0].tolist() == pytest.approx([1.0, 2.0, 3.0])
 
 
+def test_rnn_step_with_sst() -> None:
+    from matnets.activations import sst
+    params = MatrixParams(
+        W=jnp.ones((1, 2, 2, 2)),
+        B=jnp.zeros((1, 2, 2)),
+    )
+    carry = jnp.ones((1, 2, 2))
+    x = jnp.ones((1, 2, 2))
+
+    next_carry, output = rnn_step(params, carry, x, activation=sst)
+
+    assert next_carry.shape == (1, 2, 2)
+    assert output.shape == (1, 2, 2)
+
+
+def test_rnn_step_with_sss() -> None:
+    from matnets.activations import sss
+    params = MatrixParams(
+        W=jnp.ones((1, 2, 2, 2)),
+        B=jnp.zeros((1, 2, 2)),
+    )
+    carry = jnp.ones((1, 2, 2))
+    x = jnp.ones((1, 2, 2))
+
+    next_carry, output = rnn_step(params, carry, x, activation=sss)
+
+    assert next_carry.shape == (1, 2, 2)
+    assert output.shape == (1, 2, 2)
+
+
 def test_lstm_step_returns_hidden_and_cell_matrices() -> None:
     params = {
         gate: MatrixParams(

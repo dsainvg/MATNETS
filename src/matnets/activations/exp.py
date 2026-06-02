@@ -56,3 +56,16 @@ def sst(x: jax.Array) -> jax.Array:
     s = jnp.matmul(t, t)
     scale = float(n) ** -2
     return s * scale
+
+
+def sss(x: jax.Array) -> jax.Array:
+    """Scaled squared sigmoid activation.
+
+    Applies element-wise sigmoid, squares the resulting matrices, and
+    scales them by n^-2 where n is the matrix dimension.
+    """
+    n = x.shape[-1]
+    t = jnn.sigmoid(x)
+    s = jnp.matmul(t, t)
+    scale = float(n) ** -2
+    return s * scale
