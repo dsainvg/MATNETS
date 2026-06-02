@@ -6,4 +6,4 @@ from matnets._params import MatrixParams, init
 
 __all__ = ["MatrixParams", "activations", "conv", "dense", "init", "lax", "nn", "utils"]
 
-__version__ = "0.1.0"
+__version__ = "3.1.0"
