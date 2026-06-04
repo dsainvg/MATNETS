@@ -44,6 +44,32 @@ nav:
   - Getting Started:
     - Installation & First Model: getting-started/index.md
     - Development: getting-started/development.md
-  - Concepts: concepts/index.md
-  - API Guide: api/index.md
-  - Examples: examples/index.md
+  - Concepts:
+    - Overview: concepts/index.md
+    - Matrix-Neurons: concepts/matrix-neurons.md
+    - Dense Primitive: concepts/dense-primitive.md
+    - Bias: concepts/bias.md
+    - JAX Transforms: concepts/jax-transforms.md
+    - Recurrent State: concepts/recurrent-state.md
+    - Pooling: concepts/pooling.md
+    - Activations: concepts/activations.md
+  - API Guide:
+    - Overview: api/index.md
+    - MatrixParams: api/matrix_params.md
+    - init: api/init.md
+    - activations: api/activations.md
+    - dense: api/dense.md
+    - lax.matrix_conv1d: api/matrix_conv1d.md
+    - lax.matrix_conv2d: api/matrix_conv2d.md
+    - conv: api/conv.md
+    - lax.matrix_attention: api/matrix_attention.md
+    - nn: api/nn.md
+    - utils: api/utils.md
+  - Examples:
+    - Overview: examples/index.md
+    - Basic Forward Pass: examples/basic-forward-pass.md
+    - Five Hidden Layers: examples/five-hidden-layers.md
+    - Architecture Walkthrough: examples/architecture-walkthrough.md
+    - Pooling and CNNs: examples/pooling-and-cnns.md
+    - Activations: examples/activations.md
+    - Where Parallelization Happens: examples/where-parallelization-happens.md
