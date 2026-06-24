@@ -22,8 +22,8 @@ size for every neuron.
 
 ## Read Next
 
-- [Getting Started](getting-started.md): install MATNETS and run a first dense layer.
-- [Concepts](concepts.md): understand matrix-neuron shapes and JAX transforms.
-- [API Guide](api.md): see each public function and its expected shapes.
-- [Examples](examples.md): run the included examples.
-- [Development](development.md): run tests and local checks.
+- [Getting Started](getting-started/index.md): install MATNETS and run a first dense layer.
+- [Concepts](concepts/index.md): understand matrix-neuron shapes and JAX transforms.
+- [API Guide](api/index.md): see each public function and its expected shapes.
+- [Examples](examples/index.md): run the included examples.
+- [Development](getting-started/development.md): run tests and local checks.

@@ -2,25 +2,74 @@ site_name: MATNETS
 site_description: Matrix-neuron neural network experiments for Python 3.11+
 theme:
   name: material
+  font:
+    text: Roboto
+    code: Roboto Mono
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: teal
       accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: teal
       accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   features:
     - navigation.sections
     - navigation.top
     - content.code.copy
+    - search.suggest
+    - search.highlight
+
 extra_css:
   - stylesheets/extra.css
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Concepts: concepts.md
-  - API Guide: api.md
-  - Examples: examples.md
-  - Development: development.md
+  - Getting Started:
+    - Installation & First Model: getting-started/index.md
+    - Development: getting-started/development.md
+  - Concepts:
+    - Overview: concepts/index.md
+    - Matrix-Neurons: concepts/matrix-neurons.md
+    - Dense Primitive: concepts/dense-primitive.md
+    - Bias: concepts/bias.md
+    - JAX Transforms: concepts/jax-transforms.md
+    - Recurrent State: concepts/recurrent-state.md
+    - Pooling: concepts/pooling.md
+    - Activations: concepts/activations.md
+  - API Guide:
+    - Overview: api/index.md
+    - MatrixParams: api/matrix_params.md
+    - init: api/init.md
+    - activations: api/activations.md
+    - dense: api/dense.md
+    - lax.matrix_conv1d: api/matrix_conv1d.md
+    - lax.matrix_conv2d: api/matrix_conv2d.md
+    - conv: api/conv.md
+    - lax.matrix_attention: api/matrix_attention.md
+    - nn: api/nn.md
+    - utils: api/utils.md
+  - Examples:
+    - Overview: examples/index.md
+    - Basic Forward Pass: examples/basic-forward-pass.md
+    - Five Hidden Layers: examples/five-hidden-layers.md
+    - Architecture Walkthrough: examples/architecture-walkthrough.md
+    - Pooling and CNNs: examples/pooling-and-cnns.md
+    - Activations: examples/activations.md
+    - Where Parallelization Happens: examples/where-parallelization-happens.md
