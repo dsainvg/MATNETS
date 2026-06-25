@@ -1,5 +1,44 @@
 # MATNETS: Matrix-Neuron Neural Networks
-### A Research Report
+### A Research Library for Algebraically-Rich Deep Learning in JAX
+
+> **TL;DR** — MATNETS replaces the scalar neuron with an **n × n matrix neuron**, turning every weight into a matrix-product operator and every activation into a structural transform. Built entirely on JAX primitives; composes with `jit`, `vmap`, and `grad` out of the box. Achieves **~98.5% MNIST accuracy at one-third the parameters** of a standard CNN.
+
+*Repository: [github.com/dsainvg/MATNETS](https://github.com/dsainvg/MATNETS) · Documentation: [dev.dsainvg.me/MATNETS](https://dev.dsainvg.me/MATNETS/) · PyPI: [pypi.org/project/matnets](https://pypi.org/project/matnets/)*
+
+---
+
+## Highlights at a Glance
+
+| | MATNETS |
+|---|---|
+| **Core idea** | Every neuron is an n × n matrix, not a scalar |
+| **Computation** | Full matrix multiplication (not element-wise) |
+| **Backend** | Pure JAX — no PyTorch/TF dependency |
+| **Transforms** | Fully compatible with `jit`, `vmap`, `grad`, `scan` |
+| **Architectures** | Dense · Conv1D/2D · RNN · LSTM · GRU · Attention |
+| **MNIST result** | ~98.5% accuracy at **~0.33× the parameters** of StdCNN |
+| **Install** | `pip install matnets` |
+
+---
+
+## Installation
+
+```bash
+pip install matnets
+```
+
+Requires Python ≥ 3.10 and JAX (CPU or GPU). For GPU support, install the appropriate JAX build first:
+
+```bash
+# CPU
+pip install jax
+
+# CUDA 12 (GPU)
+pip install "jax[cuda12]"
+
+# Then install MATNETS
+pip install matnets
+```
 
 ---
 
@@ -21,11 +60,123 @@ This is not Hadamard (element-wise) multiplication — it is full matrix multipl
 
 ---
 
+## Quick Start: Code Examples
+
+### 1 — Dense Layer (drop-in building block)
+
+```python
+import jax
+import jax.numpy as jnp
+import matnets as mtn
+
+# Single matrix-neuron dense forward pass
+key = jax.random.key(0)
+x = jax.random.normal(key, (4, 2, 2))        # 4 input matrix-neurons, each 2×2
+
+params = mtn.MatrixParams(
+    W=jax.random.normal(key, (6, 4, 2, 2)),  # (out_neurons, in_neurons, n, n)
+    B=jnp.zeros((6, 2, 2)),                  # (out_neurons, n, n)
+)
+
+out = mtn.dense(params, x, activation=jax.nn.relu)
+print(out.shape)  # (6, 2, 2) — 6 output matrix-neurons
+```
+
+### 2 — Multi-Layer Perceptron (3 hidden layers, Flax + MATNETS)
+
+```python
+import flax.linen as nn
+import jax, jax.numpy as jnp, optax
+from flax.training.train_state import TrainState
+import matnets as mtn
+
+class MLP(nn.Module):
+    @nn.compact
+    def __call__(self, t):
+        def layer(name, x, p, q, act=None):
+            w = self.param(f"{name}_W", nn.initializers.lecun_normal(), (q, p, 2, 2))
+            b = self.param(f"{name}_B", nn.initializers.zeros, (q, 2, 2))
+            return mtn.dense(mtn.MatrixParams(W=w, B=b), x, activation=act or (lambda z: z))
+
+        t = layer("l1", t, 2, 6, jax.nn.gelu)
+        t = layer("l2", t, 6, 6, jax.nn.gelu)
+        t = layer("l3", t, 6, 6, jax.nn.gelu)
+        out = layer("out", t, 6, 2)
+        return jnp.array([out[0].mean(), out[1].mean()])
+
+model = MLP()
+x = jax.random.normal(jax.random.key(0), (64, 2, 2, 2))  # batch of matrix-neuron inputs
+params = model.init(jax.random.key(1), x[0])
+logits = jax.vmap(lambda t: model.apply(params, t))(x)
+print(logits.shape)  # (64, 2)
+```
+
+### 3 — 2D Convolutional Network
+
+```python
+import flax.linen as nn
+import jax, jax.numpy as jnp
+import matnets as mtn
+
+class MatCNN2D(nn.Module):
+    @nn.compact
+    def __call__(self, img):
+        # img shape: (H, W, in_channels, n, n)
+        c1 = mtn.MatrixParams(
+            W=self.param("c1_W", nn.initializers.lecun_normal(), (4, 2, 3, 3, 2, 2)),
+            B=self.param("c1_B", nn.initializers.zeros, (4, 2, 2)),
+        )
+        c2 = mtn.MatrixParams(
+            W=self.param("c2_W", nn.initializers.lecun_normal(), (4, 4, 3, 3, 2, 2)),
+            B=self.param("c2_B", nn.initializers.zeros, (4, 2, 2)),
+        )
+        out_p = mtn.MatrixParams(
+            W=self.param("out_W", nn.initializers.lecun_normal(), (2, 4, 2, 2)),
+            B=self.param("out_B", nn.initializers.zeros, (2, 2, 2)),
+        )
+        h = jax.nn.relu(mtn.lax.matrix_conv2d(c1, img, padding="SAME"))
+        h = jax.nn.relu(mtn.lax.matrix_conv2d(c2, h, padding="SAME"))
+        out = mtn.dense(out_p, h.mean(axis=(0, 1)))
+        return jnp.array([out[0].mean(), out[1].mean()])
+```
+
+### 4 — Matrix-LSTM for Sequence Modelling
+
+```python
+import flax.linen as nn
+import jax, jax.numpy as jnp
+import matnets as mtn
+from matnets import nn as mnn
+
+class MatLSTM(nn.Module):
+    @nn.compact
+    def __call__(self, seq):
+        # seq shape: (T, in_neurons, n, n)
+        def gate(name):
+            return mtn.MatrixParams(
+                W=self.param(f"{name}_W", nn.initializers.lecun_normal(), (6, 8, 2, 2)),
+                B=self.param(f"{name}_B", nn.initializers.zeros, (6, 2, 2)),
+            )
+
+        cell = {"i": gate("i"), "f": gate("f"), "g": gate("g"), "o": gate("o")}
+        out_p = mtn.MatrixParams(
+            W=self.param("out_W", nn.initializers.lecun_normal(), (2, 6, 2, 2)),
+            B=self.param("out_B", nn.initializers.zeros, (2, 2, 2)),
+        )
+        h0, c0 = jnp.zeros((6, 2, 2)), jnp.zeros((6, 2, 2))
+        # jax.lax.scan for JIT-compiled sequence unrolling
+        (_, _), hs = jax.lax.scan(lambda carry, x_t: mnn.lstm_step(cell, carry, x_t), (h0, c0), seq)
+        out = mtn.dense(out_p, hs[-1], activation=jax.nn.tanh)
+        return jnp.array([out[0].mean(), out[1].mean()])
+```
+
+---
+
 ## Structural Activations and Pooling
 
 MATNETS introduces the idea that activations and pooling operations can either treat the neuron's matrix as a bag of scalars (element-wise, standard) or treat it as a structural unit via its determinant.
 
-**Element-wise activations** (relu, leaky_relu, elu, sigmoid, tanh, softplus) are applied independently to each entry of the n × n matrix, consistent with how standard networks would behave if the matrix were flattened.
+**Element-wise activations** (`relu`, `leaky_relu`, `elu`, `sigmoid`, `tanh`, `softplus`) are applied independently to each entry of the n × n matrix, consistent with how standard networks would behave if the matrix were flattened.
 
 **Determinant-gated activations** are novel to this architecture:
 
@@ -105,5 +256,4 @@ MATNETS re-imagines the neuron as a matrix, making matrix multiplication — not
 
 ---
 
-*Repository: [github.com/dsainvg/MATNETS](https://github.com/dsainvg/MATNETS) | Documentation: [dev.dsainvg.me/MATNETS](https://dev.dsainvg.me/MATNETS/)*
-PYPI Package: [matnets](https://pypi.org/project/matnets/)
+*Repository: [github.com/dsainvg/MATNETS](https://github.com/dsainvg/MATNETS) | Documentation: [dev.dsainvg.me/MATNETS](https://dev.dsainvg.me/MATNETS/) | PyPI: [matnets](https://pypi.org/project/matnets/)*
